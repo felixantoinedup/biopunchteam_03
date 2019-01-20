@@ -23,9 +23,9 @@
 /wd4838
 /w44668
 /I "C:\Program Files\Epic Games\UE_4.19\Engine\Source"
-/I C:\Users\big_b\Desktop\BiopunchJam3\biopunchteam_03\Biopunch3\Source
-/I C:\Users\big_b\Desktop\BiopunchJam3\biopunchteam_03\Biopunch3\Intermediate\Build\Win64\UE4Editor\Inc\Biopunch3
-/I C:\Users\big_b\Desktop\BiopunchJam3\biopunchteam_03\Biopunch3\Source\Biopunch3
+/I C:\Users\Antoine\Desktop\BiopunchJam3\biopunchteam_03\Biopunch3\Source
+/I C:\Users\Antoine\Desktop\BiopunchJam3\biopunchteam_03\Biopunch3\Intermediate\Build\Win64\UE4Editor\Inc\Biopunch3
+/I C:\Users\Antoine\Desktop\BiopunchJam3\biopunchteam_03\Biopunch3\Source\Biopunch3
 /I "C:\Program Files\Epic Games\UE_4.19\Engine\Source\Runtime\Core\Public"
 /I "C:\Program Files\Epic Games\UE_4.19\Engine\Source\Runtime\Core\Public\Internationalization"
 /I "C:\Program Files\Epic Games\UE_4.19\Engine\Source\Runtime\Core\Public\Async"
@@ -363,9 +363,9 @@
 /FI"C:\Program Files\Epic Games\UE_4.19\Engine\Intermediate\Build\Win64\UE4Editor\Development\Engine\SharedPCH.Engine.h"
 /Yu"C:\Program Files\Epic Games\UE_4.19\Engine\Intermediate\Build\Win64\UE4Editor\Development\Engine\SharedPCH.Engine.h"
 /Fp"C:\Program Files\Epic Games\UE_4.19\Engine\Intermediate\Build\Win64\UE4Editor\Development\Engine\SharedPCH.Engine.h.pch"
-"C:\Users\big_b\Desktop\BiopunchJam3\biopunchteam_03\Biopunch3\Intermediate\Build\Win64\UE4Editor\Inc\Biopunch3\Biopunch3GameMode.gen.cpp"
-/FI"C:\Users\big_b\Desktop\BiopunchJam3\biopunchteam_03\Biopunch3\Intermediate\Build\Win64\UE4Editor\Development\Biopunch3\Definitions.Biopunch3.h"
-/Fo"C:\Users\big_b\Desktop\BiopunchJam3\biopunchteam_03\Biopunch3\Intermediate\Build\Win64\UE4Editor\Development\Biopunch3\Biopunch3GameMode.gen.cpp.obj"
+"C:\Users\Antoine\Desktop\BiopunchJam3\biopunchteam_03\Biopunch3\Intermediate\Build\Win64\UE4Editor\Inc\Biopunch3\Biopunch3GameMode.gen.cpp"
+/FI"C:\Users\Antoine\Desktop\BiopunchJam3\biopunchteam_03\Biopunch3\Intermediate\Build\Win64\UE4Editor\Development\Biopunch3\Definitions.Biopunch3.h"
+/Fo"C:\Users\Antoine\Desktop\BiopunchJam3\biopunchteam_03\Biopunch3\Intermediate\Build\Win64\UE4Editor\Development\Biopunch3\Biopunch3GameMode.gen.cpp.obj"
 /TP
 /GR-
 /W4
