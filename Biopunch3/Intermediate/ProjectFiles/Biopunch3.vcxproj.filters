@@ -4,7 +4,7 @@
 	<ItemGroup>
 		<None Include="..\..\Biopunch3.uproject" />
 		<Filter Include="Source">
-			<UniqueIdentifier>{F60DC7C3-E843-41CC-9DAB-3FE71757C228}</UniqueIdentifier>
+			<UniqueIdentifier>{E2095A68-9EFA-4768-802E-DFB80B49BFA0}</UniqueIdentifier>
 		</Filter>
 		<None Include="..\..\Source\Biopunch3.Target.cs">
 			<Filter>Source</Filter>
@@ -13,7 +13,7 @@
 			<Filter>Source</Filter>
 		</None >
 		<Filter Include="Config">
-			<UniqueIdentifier>{B2C5F905-5ACE-46EE-B352-CD9E1C58BB21}</UniqueIdentifier>
+			<UniqueIdentifier>{37825D44-B612-4FA5-BF8C-EB6FDBC0F565}</UniqueIdentifier>
 		</Filter>
 		<None Include="..\..\Config\DefaultEditor.ini">
 			<Filter>Config</Filter>
@@ -31,7 +31,7 @@
 			<Filter>Config</Filter>
 		</None >
 		<Filter Include="Source\Biopunch3">
-			<UniqueIdentifier>{FC7C048A-94ED-4424-9A62-C8251E0DABE4}</UniqueIdentifier>
+			<UniqueIdentifier>{B61F4469-9435-4838-AD70-52EF461BA8B5}</UniqueIdentifier>
 		</Filter>
 		<None Include="..\..\Source\Biopunch3\Biopunch3.Build.cs">
 			<Filter>Source\Biopunch3</Filter>
@@ -52,6 +52,12 @@
 			<Filter>Source\Biopunch3</Filter>
 		</ClCompile >
 		<ClInclude Include="..\..\Source\Biopunch3\Biopunch3GameMode.h">
+			<Filter>Source\Biopunch3</Filter>
+		</ClInclude >
+		<ClCompile Include="..\..\Source\Biopunch3\TestBlueprintFunctionLibrary.cpp">
+			<Filter>Source\Biopunch3</Filter>
+		</ClCompile >
+		<ClInclude Include="..\..\Source\Biopunch3\TestBlueprintFunctionLibrary.h">
 			<Filter>Source\Biopunch3</Filter>
 		</ClInclude >
 	</ItemGroup>

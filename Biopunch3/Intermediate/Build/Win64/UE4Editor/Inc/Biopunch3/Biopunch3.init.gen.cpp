@@ -19,8 +19,8 @@ void EmptyLinkFunctionForGeneratedCodeBiopunch3_init() {}
 			static const UE4CodeGen_Private::FPackageParams PackageParams = {
 				"/Script/Biopunch3",
 				PKG_CompiledIn | 0x00000000,
-				0x96BAF292,
-				0x5E1CCD00,
+				0x43A52E30,
+				0xA8CCA1D0,
 				nullptr, 0,
 				METADATA_PARAMS(nullptr, 0)
 			};
