@@ -1,0 +1,67 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <None Include="..\..\BiopunchJam3.uproject" />
+    <Filter Include="Source">
+      <UniqueIdentifier>{496DAB18-270F-44FC-9DFF-979F0AD57FE1}</UniqueIdentifier>
+    </Filter>
+    <None Include="..\..\Source\BiopunchJam3.Target.cs">
+      <Filter>Source</Filter>
+    </None>
+    <None Include="..\..\Source\BiopunchJam3Editor.Target.cs">
+      <Filter>Source</Filter>
+    </None>
+    <Filter Include="Config">
+      <UniqueIdentifier>{B3AF402E-4427-4EB6-B50F-5CBEF081BABC}</UniqueIdentifier>
+    </Filter>
+    <None Include="..\..\Config\DefaultEditor.ini">
+      <Filter>Config</Filter>
+    </None>
+    <None Include="..\..\Config\DefaultEditorPerProjectUserSettings.ini">
+      <Filter>Config</Filter>
+    </None>
+    <None Include="..\..\Config\DefaultEngine.ini">
+      <Filter>Config</Filter>
+    </None>
+    <None Include="..\..\Config\DefaultGame.ini">
+      <Filter>Config</Filter>
+    </None>
+    <None Include="..\..\Config\DefaultInput.ini">
+      <Filter>Config</Filter>
+    </None>
+    <Filter Include="Source\BiopunchJam3">
+      <UniqueIdentifier>{FF4ABE42-DA6C-47AB-B38C-2FA8A6F0D8F6}</UniqueIdentifier>
+    </Filter>
+    <None Include="..\..\Source\BiopunchJam3\BiopunchJam3.Build.cs">
+      <Filter>Source\BiopunchJam3</Filter>
+    </None>
+    <ClCompile Include="..\..\Source\BiopunchJam3\BiopunchJam3.cpp">
+      <Filter>Source\BiopunchJam3</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\BiopunchJam3\BiopunchJam3.h">
+      <Filter>Source\BiopunchJam3</Filter>
+    </ClInclude>
+    <ClCompile Include="..\..\Source\BiopunchJam3\BiopunchJam3Character.cpp">
+      <Filter>Source\BiopunchJam3</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\BiopunchJam3\BiopunchJam3Character.h">
+      <Filter>Source\BiopunchJam3</Filter>
+    </ClInclude>
+    <ClCompile Include="..\..\Source\BiopunchJam3\BiopunchJam3GameMode.cpp">
+      <Filter>Source\BiopunchJam3</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\BiopunchJam3\BiopunchJam3GameMode.h">
+      <Filter>Source\BiopunchJam3</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\Source\BiopunchJam3\JamBlueprintFunctionLibrary.h">
+      <Filter>Source\BiopunchJam3</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\Source\BiopunchJam3\JamBlueprintFunctionLibrary.cpp">
+      <Filter>Source\BiopunchJam3</Filter>
+    </ClCompile>
+  </ItemGroup>
+</Project>
