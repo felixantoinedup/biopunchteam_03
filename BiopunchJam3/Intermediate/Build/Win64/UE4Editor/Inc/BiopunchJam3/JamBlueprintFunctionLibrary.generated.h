@@ -13,8 +13,28 @@ PRAGMA_DISABLE_DEPRECATION_WARNINGS
 #endif
 #define BIOPUNCHJAM3_JamBlueprintFunctionLibrary_generated_h
 
-#define BiopunchJam3_Source_BiopunchJam3_JamBlueprintFunctionLibrary_h_15_RPC_WRAPPERS
-#define BiopunchJam3_Source_BiopunchJam3_JamBlueprintFunctionLibrary_h_15_RPC_WRAPPERS_NO_PURE_DECLS
+#define BiopunchJam3_Source_BiopunchJam3_JamBlueprintFunctionLibrary_h_15_RPC_WRAPPERS \
+ \
+	DECLARE_FUNCTION(execTestFunction) \
+	{ \
+		P_FINISH; \
+		P_NATIVE_BEGIN; \
+		*(int32*)Z_Param__Result=UJamBlueprintFunctionLibrary::TestFunction(); \
+		P_NATIVE_END; \
+	}
+
+
+#define BiopunchJam3_Source_BiopunchJam3_JamBlueprintFunctionLibrary_h_15_RPC_WRAPPERS_NO_PURE_DECLS \
+ \
+	DECLARE_FUNCTION(execTestFunction) \
+	{ \
+		P_FINISH; \
+		P_NATIVE_BEGIN; \
+		*(int32*)Z_Param__Result=UJamBlueprintFunctionLibrary::TestFunction(); \
+		P_NATIVE_END; \
+	}
+
+
 #define BiopunchJam3_Source_BiopunchJam3_JamBlueprintFunctionLibrary_h_15_INCLASS_NO_PURE_DECLS \
 private: \
 	static void StaticRegisterNativesUJamBlueprintFunctionLibrary(); \

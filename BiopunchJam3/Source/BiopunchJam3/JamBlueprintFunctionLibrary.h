@@ -13,5 +13,7 @@ UCLASS()
 class BIOPUNCHJAM3_API UJamBlueprintFunctionLibrary : public UBlueprintFunctionLibrary
 {
 	GENERATED_BODY()
-	
+
+		UFUNCTION(BlueprintCallable)
+		static int TestFunction();
 };

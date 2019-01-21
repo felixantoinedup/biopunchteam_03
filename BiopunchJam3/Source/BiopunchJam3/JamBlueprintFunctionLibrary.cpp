@@ -2,3 +2,7 @@
 
 #include "JamBlueprintFunctionLibrary.h"
 
+int UJamBlueprintFunctionLibrary::TestFunction()
+{
+	return 2 + 2;
+}
