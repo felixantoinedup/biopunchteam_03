@@ -1,3 +1,0 @@
-C:\Users\Antoine\Desktop\biopunchteam_03\BiopunchJam3\Source\BiopunchJam3\BiopunchJam3.Build.cs
-C:\Users\Antoine\Desktop\biopunchteam_03\BiopunchJam3\Source\BiopunchJam3.Target.cs
-C:\Users\Antoine\Desktop\biopunchteam_03\BiopunchJam3\Source\BiopunchJam3Editor.Target.cs
