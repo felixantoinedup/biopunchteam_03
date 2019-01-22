@@ -4,5 +4,5 @@
 
 int UJamBlueprintFunctionLibrary::TestFunction()
 {
-	return 2 + 2;
+	return 2 + 5;
 }
