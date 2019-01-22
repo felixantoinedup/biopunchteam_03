@@ -18,11 +18,11 @@
 	"Launch": "$(EngineDir)/Binaries/Win64/UE4Editor.exe",
 	"BuildProducts": [
 		{
-			"Path": "$(ProjectDir)/Binaries/Win64/UE4Editor-BiopunchJam3-7884.dll",
+			"Path": "$(ProjectDir)/Binaries/Win64/UE4Editor-BiopunchJam3-7977.dll",
 			"Type": "DynamicLibrary"
 		},
 		{
-			"Path": "$(ProjectDir)/Binaries/Win64/UE4Editor-BiopunchJam3-7884.pdb",
+			"Path": "$(ProjectDir)/Binaries/Win64/UE4Editor-BiopunchJam3-7977.pdb",
 			"Type": "SymbolFile"
 		},
 		{
