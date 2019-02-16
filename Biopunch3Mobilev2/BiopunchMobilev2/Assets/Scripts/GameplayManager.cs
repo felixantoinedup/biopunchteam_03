@@ -37,7 +37,14 @@ public class GameplayManager : MonoBehaviour
     private void UndoLastBlock()
     {
         if(currentBlocksPlaced.Count > 0)
-            Destroy(currentBlocksPlaced.Pop());
+        {
+            Destroy(currentBlocksPlaced.Pop().gameObject);
+
+            if (currentBlocksPlaced.Count > 0)
+                GameManager.instance.lastCubes[GameManager.instance.GetCurrentPlayer()] = currentBlocksPlaced.Peek();
+            else
+                GameManager.instance.lastCubes[GameManager.instance.GetCurrentPlayer()] = GameManager.instance.tempLastCube;
+        }
     }
 
     // Start is called before the first frame update

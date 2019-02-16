@@ -151,6 +151,16 @@ MonoBehaviour:
   - {fileID: 232876407}
   - {fileID: 1597235217}
   - {fileID: 529301826}
+  MaterialsPlayers:
+  - {fileID: 2100000, guid: 1f0119f63013a6d41acc15dfe27575b1, type: 2}
+  - {fileID: 2100000, guid: 11613a21b7b8f5a4798ead4d1fdffdb3, type: 2}
+  - {fileID: 2100000, guid: 101553ec467f87046830af3d5431fa75, type: 2}
+  - {fileID: 2100000, guid: 4b57b81e3fd89b747aefaed9115cace7, type: 2}
+  MaterialsPlayersGalaxies:
+  - {fileID: 2100000, guid: b34577c999ab72e42ac64bec312bdddf, type: 2}
+  - {fileID: 2100000, guid: f7d5f23735f01c24eb5d4bf7c3c35043, type: 2}
+  - {fileID: 2100000, guid: d6c65bd47bfd08746b7391e105ccecbc, type: 2}
+  - {fileID: 2100000, guid: d2bf19c2eedae5549a8d8082b48703a4, type: 2}
   MAX_PLAYERS: 4
   TIME_POINT_FACTOR: 1
   onlyLastCube: 1
@@ -164,7 +174,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 62701256}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.86988056, y: -1.7988685, z: -3.9137576}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}

@@ -16,18 +16,21 @@ public class GameManager : MonoBehaviour
     public static GameManager instance = null;              //Static instance of GameManager which allows it to be accessed by any other script.
     public GameObject[] players;
     public CubeController[] startingCubes;
+    public Material[] MaterialsPlayers;
+    public Material[] MaterialsPlayersGalaxies;
     public int MAX_PLAYERS = 0;
     public int TIME_POINT_FACTOR = 1;
     public bool onlyLastCube = true;
 
     [HideInInspector]
     public CubeController[] lastCubes;
+    [HideInInspector]
+    public CubeController tempLastCube;
 
     private int[] playerScores;
     private int currentPlayerIndex = 0;
     private PlayerTimer[] playerTimers;
     private CubeController[] latestPlayerCube;
-    private CubeController tempLastCube;
     private PlayerColor[] playersColor;
 
     public GameplayManager gameplayManager;

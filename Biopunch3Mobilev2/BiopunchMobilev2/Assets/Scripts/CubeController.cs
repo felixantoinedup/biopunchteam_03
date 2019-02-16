@@ -77,23 +77,32 @@ public class CubeController : MonoBehaviour
     {
         cubeColor = color;
 
-        Renderer rend = GetComponent<Renderer>();
+        Material[] mats;
+        mats = GetComponent<Renderer>().materials;
 
         if (color == GameManager.PlayerColor.eColorOne)
         {
-            rend.material.color = new Color(0.16f, 0.67f, 1f, 1);
+            mats[1] = GameManager.instance.MaterialsPlayersGalaxies[0];
+            mats[5] = GameManager.instance.MaterialsPlayers[0];
+            GetComponent<Renderer>().materials = mats;
         }
         else if (color == GameManager.PlayerColor.eColorTwo)
         {
-            rend.material.color = new Color(1f, 0f, 0.3f, 1);
+            mats[1] = GameManager.instance.MaterialsPlayersGalaxies[1];
+            mats[5] = GameManager.instance.MaterialsPlayers[1];
+            GetComponent<Renderer>().materials = mats;
         }
         else if (color == GameManager.PlayerColor.eColorThree)
         {
-            rend.material.color = new Color(0f, 0.89f, 0.21f, 1);
+            mats[1] = GameManager.instance.MaterialsPlayersGalaxies[2];
+            mats[5] = GameManager.instance.MaterialsPlayers[2];
+            GetComponent<Renderer>().materials = mats;
         }
         else if (color == GameManager.PlayerColor.eColorFour)
         {
-            rend.material.color = new Color(1f, 0.93f, 0.15f, 1);
+            mats[1] = GameManager.instance.MaterialsPlayersGalaxies[3];
+            mats[5] = GameManager.instance.MaterialsPlayers[3];
+            GetComponent<Renderer>().materials = mats;
         }
     }
 }
