@@ -54,21 +54,19 @@ public class CubeController : MonoBehaviour
 
         if(color == GameManager.PlayerColor.eColorOne)
         {
-
-            //Set the main Color of the Material to green
-            //rend.material.shader = Shader.Find("_Color");
-            //rend.material.SetColor("_Color", Color.green/255);
-            ////gameObject.GetComponent().material.color = new Color(0, 0, 1, 1);
-            rend.material.color = new Color(0, 0, 1, 1);
-
+            rend.material.color = new Color(0.16f, 0.67f, 1f, 1);
         }
-        if (color == GameManager.PlayerColor.eColorTwo)
+        else if (color == GameManager.PlayerColor.eColorTwo)
         {
-
-            ////Set the main Color of the Material to green
-            //rend.material.shader = Shader.Find("_Color");
-            //rend.material.SetColor("_Color", Color.yellow / 255);
-            rend.material.color = new Color(1, 0, 1, 1);
+            rend.material.color = new Color(1f, 0f, 0.3f, 1);
+        }
+        else if (color == GameManager.PlayerColor.eColorThree)
+        {
+            rend.material.color = new Color(0f, 0.89f, 0.21f, 1);
+        }
+        else if (color == GameManager.PlayerColor.eColorFour)
+        {
+            rend.material.color = new Color(1f, 0.93f, 0.15f, 1);
         }
 
         return nextCube;

@@ -8,6 +8,8 @@ public class GameManager : MonoBehaviour
     {
         eColorOne,
         eColorTwo,
+        eColorThree,
+        eColorFour,
         LAST_COLOR
     }
 
