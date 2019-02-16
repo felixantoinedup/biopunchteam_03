@@ -6,10 +6,14 @@ public class GameplayManager : MonoBehaviour
 {
     public GameObject Arena;
     public GameObject ArenaRotator;
-    public float RotationSpeed = 20;
+    public float RotationSpeed = 100;
+    public float MinZoom = 30;
+    public float MaxZoom = 90;
 
     public float perspectiveZoomSpeed = 0.5f;        // The rate of change of the field of view in perspective mode.
     public float orthoZoomSpeed = 0.5f;        // The rate of change of the orthographic size in orthographic mode.
+
+    public float RotationSpeedPC = 10000;
 
     // Start is called before the first frame update
     void Start()
@@ -27,16 +31,14 @@ public class GameplayManager : MonoBehaviour
         }
         else
         {
+            if ((Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Began) || Input.GetMouseButtonDown(0))
+            {
+                PlaceCube();
+            }
+
             if (Input.GetMouseButton(0))
             {
-                float rotX = Input.GetAxis("Mouse X") * RotationSpeed * Mathf.Deg2Rad * Time.deltaTime;
-                float rotY = Input.GetAxis("Mouse Y") * RotationSpeed * Mathf.Deg2Rad * Time.deltaTime;
-
-                Quaternion target = Quaternion.Euler(rotY, -rotX, 0);
-                ArenaRotator.transform.rotation = ArenaRotator.transform.rotation * target;
-
-                //Arena.transform.Rotate(Vector3.up, -rotX);
-                //Arena.transform.Rotate(Vector3.right, rotY);
+                Rotate();
             }
             else if (Input.GetMouseButtonUp(0))
             {
@@ -79,7 +81,36 @@ public class GameplayManager : MonoBehaviour
             Camera.main.fieldOfView += deltaMagnitudeDiff * perspectiveZoomSpeed;
 
             // Clamp the field of view to make sure it's between 0 and 180.
-            Camera.main.fieldOfView = Mathf.Clamp(Camera.main.fieldOfView, 0.1f, 179.9f);
+            Camera.main.fieldOfView = Mathf.Clamp(Camera.main.fieldOfView, MinZoom, MaxZoom);
+        }
+    }
+
+    void Rotate()
+    {
+        float rotX = Input.GetAxis("Mouse X") * RotationSpeedPC * Mathf.Deg2Rad * Time.deltaTime;
+        float rotY = Input.GetAxis("Mouse Y") * RotationSpeedPC * Mathf.Deg2Rad * Time.deltaTime;
+
+        if (Input.touchCount > 0)
+        {
+            rotX = Input.touches[0].deltaPosition.x * RotationSpeed * Mathf.Deg2Rad * Time.deltaTime;
+            rotY = Input.touches[0].deltaPosition.y * RotationSpeed * Mathf.Deg2Rad * Time.deltaTime;
+        }
+
+        Quaternion target = Quaternion.Euler(rotY, -rotX, 0);
+        ArenaRotator.transform.rotation = ArenaRotator.transform.rotation * target;
+
+        //Arena.transform.Rotate(Vector3.up, -rotX);
+        //Arena.transform.Rotate(Vector3.right, rotY);
+    }
+
+    void PlaceCube()
+    {
+        RaycastHit hit;
+        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+        if (Physics.Raycast(ray, out hit, 100.0f))
+        {
+            Debug.Log("Allo");
+            hit.collider.transform.localScale = Vector3.zero;
         }
     }
 }
