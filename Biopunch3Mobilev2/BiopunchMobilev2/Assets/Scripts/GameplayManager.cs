@@ -15,6 +15,18 @@ public class GameplayManager : MonoBehaviour
 
     public float RotationSpeedPC = 10000;
 
+    public GameObject gameManager;       
+
+
+    void Awake()
+    {
+        //Check if a GameManager has already been assigned to static variable GameManager.instance or if it's still null
+        if (GameManager.instance == null)
+
+            //Instantiate gameManager prefab
+            Instantiate(gameManager);
+    }
+
     // Start is called before the first frame update
     void Start()
     {
@@ -105,12 +117,21 @@ public class GameplayManager : MonoBehaviour
 
     void PlaceCube()
     {
-        RaycastHit hit;
-        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-        if (Physics.Raycast(ray, out hit, 100.0f))
-        {
-            Debug.Log("Allo");
-            hit.collider.GetComponent<CubeController>().PlaceNextCube(hit);
-        }
+
+
+            RaycastHit hit;
+            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+            if (Physics.Raycast(ray, out hit, 100.0f))
+            {
+                GameManager gm = gameManager.GetComponent(typeof(GameManager)) as GameManager;
+                if (gm.GetPlayerColor(gm.GetCurrentPlayer()) == hit.collider.GetComponent<CubeController>().cubeColor)
+                {
+                    Debug.Log("Allo");
+                    hit.collider.GetComponent<CubeController>().PlaceNextCube(hit, gm.GetPlayerColor(gm.GetCurrentPlayer()));
+                    gm.GoToNextPlayer();
+                    gm.AddPointToCurrentPlayer(1);
+                }
+            }
+        
     }
 }
