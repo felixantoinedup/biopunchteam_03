@@ -41,7 +41,8 @@ public class GameplayManager : MonoBehaviour
 
     private void UndoLastBlock()
     {
-        Destroy(currentBlocksPlaced.Pop());
+        if(currentBlocksPlaced.Count > 0)
+            Destroy(currentBlocksPlaced.Pop());
     }
 
     // Start is called before the first frame update
