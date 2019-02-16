@@ -4,6 +4,13 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
+    public enum PlayerColor
+    {
+        eColorOne,
+        eColorTwo,
+        LAST_COLOR
+    }
+
     public static GameManager instance = null;              //Static instance of GameManager which allows it to be accessed by any other script.
     public GameObject[] players;
     public int MAX_PLAYERS = 0;
@@ -11,6 +18,19 @@ public class GameManager : MonoBehaviour
     private int[] playerScores;
     private int currentPlayerIndex = 0;
     private PlayerTimer[] playerTimers;
+    private GameObject[] latestPlayerBlock;
+    private Stack<GameObject> blocksPlaced;
+    private PlayerColor[] playersColor;
+
+    void PlaceBlock(GameObject block)
+    {
+        blocksPlaced.Push(block);
+    }
+
+    void UndoLastBlock()
+    {
+        blocksPlaced.Pop();
+    }
 
     //Awake is always called before any Start functions
     void Awake()
@@ -41,7 +61,7 @@ public class GameManager : MonoBehaviour
         int i = 0;
         foreach (GameObject p in players)
         {
-            playerTimers[i] = p.GetComponent(typeof(PlayerTimer)) as PlayerTimer; ;
+            playerTimers[i] = p.GetComponent(typeof(PlayerTimer)) as PlayerTimer; 
             ++i;
         }
 
@@ -51,24 +71,61 @@ public class GameManager : MonoBehaviour
         if (TIME_POINT_FACTOR == 1)
             TIME_POINT_FACTOR = 10;
 
-        playerScores = new int[MAX_PLAYERS]; 
+        playerScores = new int[MAX_PLAYERS];
+        playersColor = new PlayerColor[MAX_PLAYERS];
+
+
+        i = 0;
+        PlayerColor lastColor = PlayerColor.eColorOne;
+        foreach (GameObject p in players)
+        {
+            if (0 == i)
+            {
+                PlayerColor randomColor = (PlayerColor)Random.Range(0, (int)PlayerColor.LAST_COLOR - 1);
+                playersColor[i] = randomColor;
+            }
+            else
+            {
+                PlayerColor newColor = lastColor + 1;
+                if(newColor == PlayerColor.LAST_COLOR)
+                {
+                    ++newColor;
+                }
+                playersColor[i] = newColor;
+            }
+            lastColor = playersColor[i];
+            ++i;
+        }
     }
 
-    void AddPointToCurrentPlayer(int points)
+    public void AddPointToCurrentPlayer(int points)
     {
         object t = playerTimers[currentPlayerIndex].GetElapsedTime();
         int weightedPoint = points + (int) Mathf.Abs((TIME_POINT_FACTOR / playerTimers[currentPlayerIndex].GetElapsedTime()));
         playerScores[currentPlayerIndex] += weightedPoint;
+
+        Debug.Log("AddPointToCurrentPlayer Player Index:" + currentPlayerIndex + "Score:" + GetPlayerScore(currentPlayerIndex));
     }
 
-    void GoToNextPlayer()
+    public void GoToNextPlayer()
     {
         currentPlayerIndex = (currentPlayerIndex+1) % MAX_PLAYERS;
+        playerTimers[currentPlayerIndex].Reset();
     }
 
-    int GetPlayerScore(int index)
+    public int GetPlayerScore(int index)
     {
         return playerScores[index];
+    }
+
+    public PlayerColor GetPlayerColor(int index)
+    {
+        return playersColor[index];
+    }
+
+    public int GetCurrentPlayer()
+    {
+        return currentPlayerIndex;
     }
 
     // Update is called once per frame

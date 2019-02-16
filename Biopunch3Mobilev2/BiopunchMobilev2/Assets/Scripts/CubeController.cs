@@ -11,6 +11,8 @@ public class CubeController : MonoBehaviour
 
     public GameObject CubePrefab;
 
+    public GameManager.PlayerColor cubeColor;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -20,29 +22,36 @@ public class CubeController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
+        //Debug.Log(transform.position);
     }
 
-    public void PlaceNextCube(RaycastHit hit)
+    public void PlaceNextCube(RaycastHit hit, GameManager.PlayerColor color)
     {
-        Vector3 positionInGrid = GridManager.instance.GetPositionInGrid(transform.parent.InverseTransformPoint(transform.position + hit.normal * GridManager.instance.SizeCube));
-        bool canPlace = true;
-
-        if (Mathf.RoundToInt(positionInGrid.x) < 0 || Mathf.RoundToInt(positionInGrid.x) >= GridManager.instance.Dimension)
-            canPlace = false;
-        else if (Mathf.RoundToInt(positionInGrid.y) < 0 || Mathf.RoundToInt(positionInGrid.y) >= GridManager.instance.Dimension)
-            canPlace = false;
-        else if (Mathf.RoundToInt(positionInGrid.z) < 0 || Mathf.RoundToInt(positionInGrid.z) >= GridManager.instance.Dimension)
-            canPlace = false;
-
-        if (canPlace == false)
-            return;
-
+        cubeColor = color;
         GameObject nextCube;
         nextCube = Instantiate(CubePrefab, transform.position + hit.normal * GridManager.instance.SizeCube, transform.rotation);
         nextCube.transform.parent = transform.parent;
 
-        nextCube.GetComponent<CubeController>().PlaceCube(positionInGrid);
+        Renderer rend = nextCube.GetComponent<Renderer>();
+
+        if(color == GameManager.PlayerColor.eColorOne)
+        {
+
+            //Set the main Color of the Material to green
+            //rend.material.shader = Shader.Find("_Color");
+            //rend.material.SetColor("_Color", Color.green/255);
+            ////gameObject.GetComponent().material.color = new Color(0, 0, 1, 1);
+            rend.material.color = new Color(0, 0, 1, 1);
+
+        }
+        if (color == GameManager.PlayerColor.eColorTwo)
+        {
+
+            ////Set the main Color of the Material to green
+            //rend.material.shader = Shader.Find("_Color");
+            //rend.material.SetColor("_Color", Color.yellow / 255);
+            rend.material.color = new Color(1, 0, 1, 1);
+        }
     }
 
     public void PlaceCube(Vector3 positionInGrid)
