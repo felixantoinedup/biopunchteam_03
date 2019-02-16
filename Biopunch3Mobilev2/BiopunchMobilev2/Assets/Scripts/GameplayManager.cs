@@ -17,7 +17,7 @@ public class GameplayManager : MonoBehaviour
 
     private Stack<CubeController> currentBlocksPlaced = new Stack<CubeController>();
 
-    void UndoAllBlocks()
+    public void UndoAllBlocks()
     {
         foreach (Object obj in currentBlocksPlaced)
         {
@@ -36,7 +36,8 @@ public class GameplayManager : MonoBehaviour
 
     private void UndoLastBlock()
     {
-        Destroy(currentBlocksPlaced.Pop());
+        if(currentBlocksPlaced.Count > 0)
+            Destroy(currentBlocksPlaced.Pop());
     }
 
     // Start is called before the first frame update
@@ -74,6 +75,7 @@ public class GameplayManager : MonoBehaviour
             {
                 GameManager.instance.GoToNextPlayer();
                 GameManager.instance.AddPointToCurrentPlayer(currentBlocksPlaced.Count);
+                currentBlocksPlaced.Clear();
             }
             else if(Input.GetKeyDown("backspace"))
             {
