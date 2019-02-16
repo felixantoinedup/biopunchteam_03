@@ -80,13 +80,11 @@ public class GameplayManager : MonoBehaviour
             }
             else if(Input.GetKeyDown("space"))
             {
-                GameManager.instance.GoToNextPlayer(true);
-                GameManager.instance.AddPointToCurrentPlayer(currentBlocksPlaced.Count);
-                currentBlocksPlaced.Clear();
+                PressDone();
             }
             else if(Input.GetKeyDown("backspace"))
             {
-                UndoLastBlock();
+                PressRevert();
             }
         }
     }
@@ -164,5 +162,17 @@ public class GameplayManager : MonoBehaviour
                 }
             }
         }
+    }
+
+    public void PressDone()
+    {
+        GameManager.instance.GoToNextPlayer(true);
+        GameManager.instance.AddPointToCurrentPlayer(currentBlocksPlaced.Count);
+        currentBlocksPlaced.Clear();
+    }
+
+    public void PressRevert()
+    {
+        UndoLastBlock();
     }
 }

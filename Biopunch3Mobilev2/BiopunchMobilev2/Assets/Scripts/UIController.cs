@@ -22,12 +22,11 @@ public class UIController : MonoBehaviour
 
         if (color == GameManager.PlayerColor.eColorOne)
         {
-            //rend.material.color = new Color(0.16f, 0.67f, 1f, 1);
-            rend.GetMaterial().color = new Color(0.16f, 0.67f, 1f, 1);
+            rend.GetMaterial().color = new Color(1f, 0f, 0.3f, 1);
         }
         else if (color == GameManager.PlayerColor.eColorTwo)
         {
-            rend.GetMaterial().color = new Color(1f, 0f, 0.3f, 1);
+            rend.GetMaterial().color = new Color(0.16f, 0.67f, 1f, 1);
         }
         else if (color == GameManager.PlayerColor.eColorThree)
         {
