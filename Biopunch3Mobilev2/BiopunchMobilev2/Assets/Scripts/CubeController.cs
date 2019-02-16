@@ -27,11 +27,29 @@ public class CubeController : MonoBehaviour
 
     public void PlaceNextCube(RaycastHit hit, GameManager.PlayerColor color)
     {
-        cubeColor = color;
+        Vector3 positionInGrid = GridManager.instance.GetPositionInGrid(transform.parent.InverseTransformPoint(transform.position + hit.normal * GridManager.instance.SizeCube));
+
+        bool canPlace = true;
+
+        if (Mathf.RoundToInt(positionInGrid.x) < 0 || Mathf.RoundToInt(positionInGrid.x) >= GridManager.instance.Dimension)
+            canPlace = false;
+        else if (Mathf.RoundToInt(positionInGrid.y) < 0 || Mathf.RoundToInt(positionInGrid.y) >= GridManager.instance.Dimension)
+            canPlace = false;
+        else if (Mathf.RoundToInt(positionInGrid.z) < 0 || Mathf.RoundToInt(positionInGrid.z) >= GridManager.instance.Dimension)
+            canPlace = false;
+
+        if (canPlace == false)
+            return;
+
+        Debug.Log("Allo");
+
         GameObject nextCube;
         nextCube = Instantiate(CubePrefab, transform.position + hit.normal * GridManager.instance.SizeCube, transform.rotation);
         nextCube.transform.parent = transform.parent;
 
+        nextCube.GetComponent<CubeController>().PlaceCube(positionInGrid);
+
+        cubeColor = color;
         Renderer rend = nextCube.GetComponent<Renderer>();
 
         if(color == GameManager.PlayerColor.eColorOne)
