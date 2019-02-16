@@ -141,6 +141,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bc32de3fcd226d64697c1bc8f8c62296, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  SizeCube: 0.5
+  Dimension: 3
 --- !u!4 &510541824
 Transform:
   m_ObjectHideFlags: 0
@@ -318,7 +320,7 @@ Camera:
     height: 1
   near clip plane: 0.3
   far clip plane: 1000
-  field of view: 60
+  field of view: 30
   orthographic: 0
   orthographic size: 5
   m_Depth: -1
@@ -439,17 +441,17 @@ PrefabInstance:
     - target: {fileID: 4137842492837033746, guid: 6bbb5c962d5703b47aa6231764f69921,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: -0.5
       objectReference: {fileID: 0}
     - target: {fileID: 4137842492837033746, guid: 6bbb5c962d5703b47aa6231764f69921,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 4137842492837033746, guid: 6bbb5c962d5703b47aa6231764f69921,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: -0.5
       objectReference: {fileID: 0}
     - target: {fileID: 4137842492837033746, guid: 6bbb5c962d5703b47aa6231764f69921,
         type: 3}
@@ -489,6 +491,21 @@ PrefabInstance:
     - target: {fileID: 4137842492837033746, guid: 6bbb5c962d5703b47aa6231764f69921,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6959423338428713475, guid: 6bbb5c962d5703b47aa6231764f69921,
+        type: 3}
+      propertyPath: PositionInGridX
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6959423338428713475, guid: 6bbb5c962d5703b47aa6231764f69921,
+        type: 3}
+      propertyPath: PositionInGridY
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6959423338428713475, guid: 6bbb5c962d5703b47aa6231764f69921,
+        type: 3}
+      propertyPath: PositionInGridZ
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []

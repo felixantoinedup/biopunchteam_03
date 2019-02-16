@@ -109,7 +109,6 @@ public class GameplayManager : MonoBehaviour
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
         if (Physics.Raycast(ray, out hit, 100.0f))
         {
-            Debug.Log("Allo");
             hit.collider.GetComponent<CubeController>().PlaceNextCube(hit);
         }
     }
