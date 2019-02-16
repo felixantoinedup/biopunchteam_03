@@ -38,6 +38,12 @@ public class CubeController : MonoBehaviour
         else if (Mathf.RoundToInt(positionInGrid.z) < 0 || Mathf.RoundToInt(positionInGrid.z) >= GridManager.instance.Dimension)
             canPlace = false;
 
+        if (GameManager.instance.onlyLastBlock && this != GameManager.instance.lastCubes[GameManager.instance.GetCurrentPlayer()])
+        {
+            canPlace = false;
+            Debug.Log("Fuck");
+        }
+
         if (canPlace == false)
             return null;
 

@@ -15,14 +15,19 @@ public class GameManager : MonoBehaviour
 
     public static GameManager instance = null;              //Static instance of GameManager which allows it to be accessed by any other script.
     public GameObject[] players;
+    public CubeController[] startingCubes;
     public int MAX_PLAYERS = 0;
     public int TIME_POINT_FACTOR = 1;
+    public bool onlyLastBlock = true;
+
+    [HideInInspector]
+    public CubeController[] lastCubes;
+
     private int[] playerScores;
     private int currentPlayerIndex = 0;
     private PlayerTimer[] playerTimers;
     private GameObject[] latestPlayerBlock;
     private PlayerColor[] playersColor;
-
 
     //Awake is always called before any Start functions
     void Awake()
@@ -90,6 +95,13 @@ public class GameManager : MonoBehaviour
             }
             lastColor = playersColor[i];
             ++i;
+        }
+
+        lastCubes = new CubeController[MAX_PLAYERS];
+        for (int j = 0; j < startingCubes.Length; j++)
+        {
+            startingCubes[j].SetCubeColor((PlayerColor)j);
+            lastCubes[j] = startingCubes[j];
         }
     }
 

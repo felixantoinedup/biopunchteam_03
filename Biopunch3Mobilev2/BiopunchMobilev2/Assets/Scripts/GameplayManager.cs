@@ -15,12 +15,7 @@ public class GameplayManager : MonoBehaviour
 
     public float RotationSpeedPC = 10000;
 
-    private Stack<GameObject> currentBlocksPlaced = new Stack<GameObject>();
-
-    void PlaceBlock(GameObject block)
-    {
-        currentBlocksPlaced.Push(block);
-    }
+    private Stack<CubeController> currentBlocksPlaced = new Stack<CubeController>();
 
     void UndoAllBlocks()
     {
@@ -154,7 +149,10 @@ public class GameplayManager : MonoBehaviour
                 //GameManager.instance.GoToNextPlayer();
                 //GameManager.instance.AddPointToCurrentPlayer(1);
                 if(null != cube)
-                    currentBlocksPlaced.Push(cube);
+                {
+                    currentBlocksPlaced.Push(cube.GetComponent<CubeController>());
+                    GameManager.instance.lastCubes[GameManager.instance.GetCurrentPlayer()] = currentBlocksPlaced.Peek();
+                }
             }
         }
     }
