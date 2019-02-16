@@ -44,9 +44,6 @@ public class GridManager : MonoBehaviour
 
     public void AddToGrid(CubeController cube, int x, int y, int z)
     {
-        Debug.Log(x);
-        Debug.Log(y);
-        Debug.Log(z);
         Grid[x,y,z] = cube;
     }
 }

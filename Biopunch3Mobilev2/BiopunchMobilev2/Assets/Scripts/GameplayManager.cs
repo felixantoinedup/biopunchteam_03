@@ -19,11 +19,11 @@ public class GameplayManager : MonoBehaviour
 
     public void UndoAllBlocks()
     {
-        foreach (Object obj in currentBlocksPlaced)
+        foreach (CubeController obj in currentBlocksPlaced)
         {
             try
             {
-                if (obj != null) Destroy(obj);
+                if (obj != null) Destroy(obj.gameObject);
             }
             catch
             {
@@ -73,7 +73,7 @@ public class GameplayManager : MonoBehaviour
             }
             else if(Input.GetKeyDown("space"))
             {
-                GameManager.instance.GoToNextPlayer();
+                GameManager.instance.GoToNextPlayer(true);
                 GameManager.instance.AddPointToCurrentPlayer(currentBlocksPlaced.Count);
                 currentBlocksPlaced.Clear();
             }

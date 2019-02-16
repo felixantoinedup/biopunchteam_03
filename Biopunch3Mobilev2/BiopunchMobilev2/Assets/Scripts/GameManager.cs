@@ -18,7 +18,7 @@ public class GameManager : MonoBehaviour
     public CubeController[] startingCubes;
     public int MAX_PLAYERS = 0;
     public int TIME_POINT_FACTOR = 1;
-    public bool onlyLastBlock = true;
+    public bool onlyLastCube = true;
 
     [HideInInspector]
     public CubeController[] lastCubes;
@@ -26,7 +26,8 @@ public class GameManager : MonoBehaviour
     private int[] playerScores;
     private int currentPlayerIndex = 0;
     private PlayerTimer[] playerTimers;
-    private GameObject[] latestPlayerBlock;
+    private CubeController[] latestPlayerCube;
+    private CubeController tempLastCube;
     private PlayerColor[] playersColor;
 
     public GameplayManager gameplayManager;
@@ -105,6 +106,8 @@ public class GameManager : MonoBehaviour
             startingCubes[j].SetCubeColor((PlayerColor)j);
             lastCubes[j] = startingCubes[j];
         }
+
+        tempLastCube = lastCubes[0];
     }
 
     public void AddPointToCurrentPlayer(int points)
@@ -116,10 +119,17 @@ public class GameManager : MonoBehaviour
         Debug.Log("AddPointToCurrentPlayer Player Index:" + currentPlayerIndex + "Score:" + GetPlayerScore(currentPlayerIndex));
     }
 
-    public void GoToNextPlayer()
+    public void GoToNextPlayer(bool placedBlock)
     {
+        if (!placedBlock)
+        {
+            lastCubes[currentPlayerIndex] = tempLastCube;
+        }
+
         currentPlayerIndex = (currentPlayerIndex+1) % MAX_PLAYERS;
         playerTimers[currentPlayerIndex].Reset();
+
+        tempLastCube = lastCubes[currentPlayerIndex];
     }
 
     public int GetPlayerScore(int index)
@@ -144,7 +154,7 @@ public class GameManager : MonoBehaviour
         if (t > TIME_POINT_FACTOR)
         {
             gameplayManager.UndoAllBlocks();
-            GoToNextPlayer();
+            GoToNextPlayer(false);
         }
 
         //AddPointToCurrentPlayer(1);
