@@ -80,6 +80,10 @@ public class GameplayManager : MonoBehaviour
                 GameManager.instance.GoToNextPlayer();
                 GameManager.instance.AddPointToCurrentPlayer(currentBlocksPlaced.Count);
             }
+            else if(Input.GetKeyDown("backspace"))
+            {
+                UndoLastBlock();
+            }
         }
     }
 
