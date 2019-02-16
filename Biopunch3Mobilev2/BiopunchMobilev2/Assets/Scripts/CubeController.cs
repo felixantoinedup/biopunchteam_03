@@ -25,7 +25,7 @@ public class CubeController : MonoBehaviour
         //Debug.Log(transform.position);
     }
 
-    public void PlaceNextCube(RaycastHit hit, GameManager.PlayerColor color)
+    public GameObject PlaceNextCube(RaycastHit hit, GameManager.PlayerColor color)
     {
         Vector3 positionInGrid = GridManager.instance.GetPositionInGrid(transform.parent.InverseTransformPoint(transform.position + hit.normal * GridManager.instance.SizeCube));
 
@@ -39,7 +39,7 @@ public class CubeController : MonoBehaviour
             canPlace = false;
 
         if (canPlace == false)
-            return;
+            return null;
 
         Debug.Log("Allo");
 
@@ -70,6 +70,8 @@ public class CubeController : MonoBehaviour
             //rend.material.SetColor("_Color", Color.yellow / 255);
             rend.material.color = new Color(1, 0, 1, 1);
         }
+
+        return nextCube;
     }
 
     public void PlaceCube(Vector3 positionInGrid)

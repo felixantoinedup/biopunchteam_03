@@ -19,18 +19,8 @@ public class GameManager : MonoBehaviour
     private int currentPlayerIndex = 0;
     private PlayerTimer[] playerTimers;
     private GameObject[] latestPlayerBlock;
-    private Stack<GameObject> blocksPlaced;
     private PlayerColor[] playersColor;
 
-    void PlaceBlock(GameObject block)
-    {
-        blocksPlaced.Push(block);
-    }
-
-    void UndoLastBlock()
-    {
-        blocksPlaced.Pop();
-    }
 
     //Awake is always called before any Start functions
     void Awake()
@@ -65,6 +55,7 @@ public class GameManager : MonoBehaviour
             ++i;
         }
 
+        // DEBUG: OVERRIDE DEFAULT STUFFS 
         if (MAX_PLAYERS == 0)
             MAX_PLAYERS = 4;
 
@@ -74,15 +65,17 @@ public class GameManager : MonoBehaviour
         playerScores = new int[MAX_PLAYERS];
         playersColor = new PlayerColor[MAX_PLAYERS];
 
-
+        // Setup first player color
         i = 0;
         PlayerColor lastColor = PlayerColor.eColorOne;
         foreach (GameObject p in players)
         {
             if (0 == i)
             {
-                PlayerColor randomColor = (PlayerColor)Random.Range(0, (int)PlayerColor.LAST_COLOR - 1);
-                playersColor[i] = randomColor;
+                // STOP THE RANDOM!!!
+                //PlayerColor randomColor = (PlayerColor)Random.Range(0, (int)PlayerColor.LAST_COLOR - 1);
+                //playersColor[i] = randomColor;
+                playersColor[i] = lastColor;
             }
             else
             {

@@ -15,6 +15,35 @@ public class GameplayManager : MonoBehaviour
 
     public float RotationSpeedPC = 10000;
 
+    private Stack<GameObject> currentBlocksPlaced = new Stack<GameObject>();
+
+    void PlaceBlock(GameObject block)
+    {
+        currentBlocksPlaced.Push(block);
+    }
+
+    void UndoAllBlocks()
+    {
+        foreach (Object obj in currentBlocksPlaced)
+        {
+            try
+            {
+                if (obj != null) Destroy(obj);
+            }
+            catch
+            {
+                continue;
+            }
+        }
+
+        currentBlocksPlaced.Clear();
+    }
+
+    private void UndoLastBlock()
+    {
+        Destroy(currentBlocksPlaced.Pop());
+    }
+
     // Start is called before the first frame update
     void Start()
     {
@@ -45,6 +74,11 @@ public class GameplayManager : MonoBehaviour
                 Arena.transform.parent = null;
                 ArenaRotator.transform.rotation = Quaternion.identity;
                 Arena.transform.parent = ArenaRotator.transform;
+            }
+            else if(Input.GetKeyDown("space"))
+            {
+                GameManager.instance.GoToNextPlayer();
+                GameManager.instance.AddPointToCurrentPlayer(currentBlocksPlaced.Count);
             }
         }
     }
@@ -111,9 +145,12 @@ public class GameplayManager : MonoBehaviour
         {
             if (GameManager.instance.GetPlayerColor(GameManager.instance.GetCurrentPlayer()) == hit.collider.GetComponent<CubeController>().cubeColor)
             {
-                hit.collider.GetComponent<CubeController>().PlaceNextCube(hit, GameManager.instance.GetPlayerColor(GameManager.instance.GetCurrentPlayer()));
-                GameManager.instance.GoToNextPlayer();
-                GameManager.instance.AddPointToCurrentPlayer(1);
+                GameObject cube = null;
+                cube = hit.collider.GetComponent<CubeController>().PlaceNextCube(hit, GameManager.instance.GetPlayerColor(GameManager.instance.GetCurrentPlayer()));
+                //GameManager.instance.GoToNextPlayer();
+                //GameManager.instance.AddPointToCurrentPlayer(1);
+                if(null != cube)
+                    currentBlocksPlaced.Push(cube);
             }
         }
     }
