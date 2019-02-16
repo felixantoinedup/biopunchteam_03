@@ -37,7 +37,14 @@ public class GameplayManager : MonoBehaviour
     private void UndoLastBlock()
     {
         if(currentBlocksPlaced.Count > 0)
-            Destroy(currentBlocksPlaced.Pop());
+        {
+            Destroy(currentBlocksPlaced.Pop().gameObject);
+
+            if (currentBlocksPlaced.Count > 0)
+                GameManager.instance.lastCubes[GameManager.instance.GetCurrentPlayer()] = currentBlocksPlaced.Peek();
+            else
+                GameManager.instance.lastCubes[GameManager.instance.GetCurrentPlayer()] = GameManager.instance.tempLastCube;
+        }
     }
 
     // Start is called before the first frame update
@@ -73,13 +80,11 @@ public class GameplayManager : MonoBehaviour
             }
             else if(Input.GetKeyDown("space"))
             {
-                GameManager.instance.GoToNextPlayer(true);
-                GameManager.instance.AddPointToCurrentPlayer(currentBlocksPlaced.Count);
-                currentBlocksPlaced.Clear();
+                PressDone();
             }
             else if(Input.GetKeyDown("backspace"))
             {
-                UndoLastBlock();
+                PressRevert();
             }
         }
     }
@@ -157,5 +162,17 @@ public class GameplayManager : MonoBehaviour
                 }
             }
         }
+    }
+
+    public void PressDone()
+    {
+        GameManager.instance.GoToNextPlayer(true);
+        GameManager.instance.AddPointToCurrentPlayer(currentBlocksPlaced.Count);
+        currentBlocksPlaced.Clear();
+    }
+
+    public void PressRevert()
+    {
+        UndoLastBlock();
     }
 }
