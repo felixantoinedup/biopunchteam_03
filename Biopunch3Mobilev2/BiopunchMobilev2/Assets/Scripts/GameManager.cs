@@ -147,6 +147,11 @@ public class GameManager : MonoBehaviour
         return currentPlayerIndex;
     }
 
+    public float GetCurrentPlayerTimer()
+    {
+        return (float) TIME_POINT_FACTOR - playerTimers[currentPlayerIndex].GetElapsedTime();
+    }
+
     // Update is called once per frame
     void Update()
     {
