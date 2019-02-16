@@ -13,7 +13,7 @@ public class PlayerTimer : MonoBehaviour
         startTime = Time.time;
     }
 
-    void Reset()
+    public void Reset()
     {
         startTime = Time.time;
     }

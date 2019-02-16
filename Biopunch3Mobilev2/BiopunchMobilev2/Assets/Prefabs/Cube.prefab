@@ -105,5 +105,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   PlayerID: 0
-  PositionInGrid: {x: 0, y: 0, z: 0}
+  PositionInGridX: 0
+  PositionInGridY: 0
+  PositionInGridZ: 0
   CubePrefab: {fileID: 4017169117543178345}
+  cubeColor: 0

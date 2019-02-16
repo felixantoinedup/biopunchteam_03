@@ -4,13 +4,33 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
+    public enum PlayerColor
+    {
+        eColorOne,
+        eColorTwo,
+        eColorThree,
+        eColorFour,
+        LAST_COLOR
+    }
+
     public static GameManager instance = null;              //Static instance of GameManager which allows it to be accessed by any other script.
     public GameObject[] players;
+    public CubeController[] startingCubes;
     public int MAX_PLAYERS = 0;
     public int TIME_POINT_FACTOR = 1;
+    public bool onlyLastCube = true;
+
+    [HideInInspector]
+    public CubeController[] lastCubes;
+
     private int[] playerScores;
     private int currentPlayerIndex = 0;
     private PlayerTimer[] playerTimers;
+    private CubeController[] latestPlayerCube;
+    private CubeController tempLastCube;
+    private PlayerColor[] playersColor;
+
+    public GameplayManager gameplayManager;
 
     //Awake is always called before any Start functions
     void Awake()
@@ -41,39 +61,102 @@ public class GameManager : MonoBehaviour
         int i = 0;
         foreach (GameObject p in players)
         {
-            playerTimers[i] = p.GetComponent(typeof(PlayerTimer)) as PlayerTimer; ;
+            playerTimers[i] = p.GetComponent(typeof(PlayerTimer)) as PlayerTimer; 
             ++i;
         }
 
+        // DEBUG: OVERRIDE DEFAULT STUFFS 
         if (MAX_PLAYERS == 0)
             MAX_PLAYERS = 4;
 
         if (TIME_POINT_FACTOR == 1)
             TIME_POINT_FACTOR = 10;
 
-        playerScores = new int[MAX_PLAYERS]; 
+        playerScores = new int[MAX_PLAYERS];
+        playersColor = new PlayerColor[MAX_PLAYERS];
+
+        // Setup first player color
+        i = 0;
+        PlayerColor lastColor = PlayerColor.eColorOne;
+        foreach (GameObject p in players)
+        {
+            if (0 == i)
+            {
+                // STOP THE RANDOM!!!
+                //PlayerColor randomColor = (PlayerColor)Random.Range(0, (int)PlayerColor.LAST_COLOR - 1);
+                //playersColor[i] = randomColor;
+                playersColor[i] = lastColor;
+            }
+            else
+            {
+                PlayerColor newColor = lastColor + 1;
+                if(newColor == PlayerColor.LAST_COLOR)
+                {
+                    ++newColor;
+                }
+                playersColor[i] = newColor;
+            }
+            lastColor = playersColor[i];
+            ++i;
+        }
+
+        lastCubes = new CubeController[MAX_PLAYERS];
+        for (int j = 0; j < startingCubes.Length; j++)
+        {
+            startingCubes[j].SetCubeColor((PlayerColor)j);
+            lastCubes[j] = startingCubes[j];
+        }
+
+        tempLastCube = lastCubes[0];
     }
 
-    void AddPointToCurrentPlayer(int points)
+    public void AddPointToCurrentPlayer(int points)
     {
         object t = playerTimers[currentPlayerIndex].GetElapsedTime();
         int weightedPoint = points + (int) Mathf.Abs((TIME_POINT_FACTOR / playerTimers[currentPlayerIndex].GetElapsedTime()));
         playerScores[currentPlayerIndex] += weightedPoint;
+
+        Debug.Log("AddPointToCurrentPlayer Player Index:" + currentPlayerIndex + "Score:" + GetPlayerScore(currentPlayerIndex));
     }
 
-    void GoToNextPlayer()
+    public void GoToNextPlayer(bool placedBlock)
     {
+        if (!placedBlock)
+        {
+            lastCubes[currentPlayerIndex] = tempLastCube;
+        }
+
         currentPlayerIndex = (currentPlayerIndex+1) % MAX_PLAYERS;
+        playerTimers[currentPlayerIndex].Reset();
+
+        tempLastCube = lastCubes[currentPlayerIndex];
     }
 
-    int GetPlayerScore(int index)
+    public int GetPlayerScore(int index)
     {
         return playerScores[index];
+    }
+
+    public PlayerColor GetPlayerColor(int index)
+    {
+        return playersColor[index];
+    }
+
+    public int GetCurrentPlayer()
+    {
+        return currentPlayerIndex;
     }
 
     // Update is called once per frame
     void Update()
     {
+        float t = playerTimers[currentPlayerIndex].GetElapsedTime();
+        if (t > TIME_POINT_FACTOR)
+        {
+            gameplayManager.UndoAllBlocks();
+            GoToNextPlayer(false);
+        }
+
         //AddPointToCurrentPlayer(1);
         ////Debug.Log("Player Index:" +currentPlayerIndex + "Score:" + GetPlayerScore(currentPlayerIndex));
         //GoToNextPlayer();
