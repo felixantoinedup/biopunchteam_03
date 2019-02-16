@@ -110,7 +110,7 @@ public class GameplayManager : MonoBehaviour
         if (Physics.Raycast(ray, out hit, 100.0f))
         {
             Debug.Log("Allo");
-            hit.collider.transform.localScale = Vector3.zero;
+            hit.collider.GetComponent<CubeController>().PlaceNextCube(hit);
         }
     }
 }
