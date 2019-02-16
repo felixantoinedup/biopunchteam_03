@@ -22,7 +22,7 @@ public class GameplayManager : MonoBehaviour
         currentBlocksPlaced.Push(block);
     }
 
-    void UndoAllBlocks()
+    public void UndoAllBlocks()
     {
         foreach (Object obj in currentBlocksPlaced)
         {
@@ -80,6 +80,7 @@ public class GameplayManager : MonoBehaviour
             {
                 GameManager.instance.GoToNextPlayer();
                 GameManager.instance.AddPointToCurrentPlayer(currentBlocksPlaced.Count);
+                currentBlocksPlaced.Clear();
             }
             else if(Input.GetKeyDown("backspace"))
             {

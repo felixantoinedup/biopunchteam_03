@@ -23,6 +23,7 @@ public class GameManager : MonoBehaviour
     private GameObject[] latestPlayerBlock;
     private PlayerColor[] playersColor;
 
+    public GameplayManager gameplayManager;
 
     //Awake is always called before any Start functions
     void Awake()
@@ -91,6 +92,8 @@ public class GameManager : MonoBehaviour
             lastColor = playersColor[i];
             ++i;
         }
+
+        
     }
 
     public void AddPointToCurrentPlayer(int points)
@@ -126,6 +129,13 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        float t = playerTimers[currentPlayerIndex].GetElapsedTime();
+        if (t > TIME_POINT_FACTOR)
+        {
+            gameplayManager.UndoAllBlocks();
+            GoToNextPlayer();
+        }
+
         //AddPointToCurrentPlayer(1);
         ////Debug.Log("Player Index:" +currentPlayerIndex + "Score:" + GetPlayerScore(currentPlayerIndex));
         //GoToNextPlayer();

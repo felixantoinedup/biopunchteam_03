@@ -141,7 +141,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bc32de3fcd226d64697c1bc8f8c62296, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SizeCube: 0.5
+  SizeCube: 1
   Dimension: 16
 --- !u!4 &510541824
 Transform:
@@ -627,6 +627,7 @@ MonoBehaviour:
   - {fileID: 672476756}
   MAX_PLAYERS: 2
   TIME_POINT_FACTOR: 1
+  gameplayManager: {fileID: 1077266325}
 --- !u!4 &2117240302
 Transform:
   m_ObjectHideFlags: 0
