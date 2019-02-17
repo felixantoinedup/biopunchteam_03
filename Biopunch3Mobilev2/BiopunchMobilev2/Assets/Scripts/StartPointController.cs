@@ -58,6 +58,8 @@ public class StartPointController : MonoBehaviour
         nextCube.GetComponent<CubeController>().SetCubeColor(color);
         nextCube.GetComponent<CubeController>().PlaceCube(positionInGrid);
 
+        nextCube.GetComponent<CubeController>().SetGlow(GameManager.instance.gridManager.GlowValue);
+
         return nextCube;
     }
 }

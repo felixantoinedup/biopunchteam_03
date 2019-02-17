@@ -22,7 +22,7 @@ public class CubeController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //Debug.Log(transform.position);
+
     }
 
     public GameObject PlaceNextCube(RaycastHit hit, GameManager.PlayerColor color)
@@ -46,11 +46,19 @@ public class CubeController : MonoBehaviour
         if (canPlace == false)
             return null;
 
+        if (GameManager.instance.lastCubes[GameManager.instance.GetCurrentPlayer()] == null)
+        {
+            GameManager.instance.StopGlow();
+        }
+
         GameObject nextCube;
         nextCube = Instantiate(CubePrefab, transform.position + hit.normal * GridManager.instance.SizeCube, transform.rotation);
         nextCube.transform.parent = transform.parent;
         nextCube.GetComponent<CubeController>().SetCubeColor(color);
         nextCube.GetComponent<CubeController>().PlaceCube(positionInGrid);
+
+        SetGlow(GameManager.instance.gridManager.noGlowValue);
+        nextCube.GetComponent<CubeController>().SetGlow(GameManager.instance.gridManager.GlowValue);
 
         return nextCube;
     }
@@ -104,5 +112,13 @@ public class CubeController : MonoBehaviour
             mats[5] = GameManager.instance.MaterialsPlayers[3];
             GetComponent<Renderer>().materials = mats;
         }
+    }
+
+    public void SetGlow(float glowValue)
+    {
+        Material[] mats;
+        mats = GetComponent<Renderer>().materials;
+
+        mats[5].SetFloat("Vector1_4C82A84B", glowValue);
     }
 }

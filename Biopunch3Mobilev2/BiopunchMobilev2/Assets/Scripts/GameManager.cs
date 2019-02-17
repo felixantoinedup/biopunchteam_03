@@ -34,6 +34,7 @@ public class GameManager : MonoBehaviour
     private PlayerColor[] playersColor;
 
     public GameplayManager gameplayManager;
+    public GridManager gridManager;
 
     //Awake is always called before any Start functions
     void Awake()
@@ -139,8 +140,12 @@ public class GameManager : MonoBehaviour
             lastCubes[currentPlayerIndex] = null;
         }
 
+        gridManager.StopGlowAllPlayerCube();
+
         currentPlayerIndex = (currentPlayerIndex+1) % MAX_PLAYERS;
         playerTimers[currentPlayerIndex].Reset();
+
+        gridManager.GlowAllPlayerCube();
     }
 
     public int GetPlayerScore(int index)
@@ -176,5 +181,10 @@ public class GameManager : MonoBehaviour
         //AddPointToCurrentPlayer(1);
         ////Debug.Log("Player Index:" +currentPlayerIndex + "Score:" + GetPlayerScore(currentPlayerIndex));
         //GoToNextPlayer();
+    }
+
+    public void StopGlow()
+    {
+        gridManager.StopGlowAllPlayerCube();
     }
 }
