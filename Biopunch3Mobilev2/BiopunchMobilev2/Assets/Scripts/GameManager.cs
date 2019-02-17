@@ -316,6 +316,9 @@ public class GameManager : MonoBehaviour
 
     public void spawnLegacyCubes()
     {
+        if (cubeForLegacy == null)
+            return;
+
         int x = cubeForLegacy.PositionInGridX;
         int y = cubeForLegacy.PositionInGridY;
         int z = cubeForLegacy.PositionInGridZ;
