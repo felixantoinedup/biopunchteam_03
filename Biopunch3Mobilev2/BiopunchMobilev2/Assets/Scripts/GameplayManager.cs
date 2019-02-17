@@ -27,6 +27,13 @@ public class GameplayManager : MonoBehaviour
     public float sensitivity = 5.0f;
     public float smoothing = 2.0f;
 
+    public AudioSource efxSourceAdd1;                   //Drag a reference to the audio source which will play the sound effects.
+    public AudioSource efxSourceAdd2;                   //Drag a reference to the audio source which will play the sound effects.
+    public AudioSource efxSourceAdd3;                   //Drag a reference to the audio source which will play the sound effects.
+
+    public AudioSource efxSourceDelete1;                   //Drag a reference to the audio source which will play the sound effects.
+    public AudioSource efxSourceDelete2;                   //Drag a reference to the audio source which will play the sound effects.
+
     public void UndoAllBlocks()
     {
         foreach (CubeController obj in GameManager.instance.currentBlocksPlaced)
@@ -42,6 +49,7 @@ public class GameplayManager : MonoBehaviour
         }
 
         GameManager.instance.currentBlocksPlaced.Clear();
+        efxSourceDelete2.Play();
     }
 
     private void UndoLastBlock()
@@ -60,6 +68,7 @@ public class GameplayManager : MonoBehaviour
                 GameManager.instance.gridManager.GlowAllPlayerCube();
             }
         }
+        efxSourceDelete1.Play();
     }
 
     // Start is called before the first frame update
@@ -216,6 +225,8 @@ public class GameplayManager : MonoBehaviour
                     {
                         GameManager.instance.currentBlocksPlaced.Push(cube.GetComponent<CubeController>());
                         GameManager.instance.lastCubes[GameManager.instance.GetCurrentPlayer()] = cube.GetComponent<CubeController>();
+
+                        PlayPlaceCubeAudio();
                     }
                 }
             }
@@ -229,8 +240,26 @@ public class GameplayManager : MonoBehaviour
                 {
                     GameManager.instance.currentBlocksPlaced.Push(cube.GetComponent<CubeController>());
                     GameManager.instance.lastCubes[GameManager.instance.GetCurrentPlayer()] = cube.GetComponent<CubeController>();
+
+                    PlayPlaceCubeAudio();
                 }
             }
+        }
+    }
+
+    private void PlayPlaceCubeAudio()
+    {
+        if (GameManager.instance.currentBlocksPlaced.Count == 1)
+        {
+            efxSourceAdd1.Play();
+        }
+        else if (GameManager.instance.currentBlocksPlaced.Count == 2)
+        {
+            efxSourceAdd2.Play();
+        }
+        else if (GameManager.instance.currentBlocksPlaced.Count > 2)
+        {
+            efxSourceAdd3.Play();
         }
     }
 
@@ -257,5 +286,6 @@ public class GameplayManager : MonoBehaviour
     public void PressRevert()
     {
         UndoLastBlock();
+        efxSourceDelete1.Play();
     }
 }

@@ -68,6 +68,8 @@ public class GameManager : MonoBehaviour
     public UIController uiController;
 
 
+    public AudioSource musicSource;                 //Drag a reference to the audio source which will play the music.
+
     //Awake is always called before any Start functions
     void Awake()
         {
@@ -147,6 +149,8 @@ public class GameManager : MonoBehaviour
         //tempLastCube = lastCubes[0];
 
         StopPlay();
+
+        musicSource.Play();
     }
 
     public void resetGame()
