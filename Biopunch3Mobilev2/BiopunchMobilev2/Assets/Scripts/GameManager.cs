@@ -260,6 +260,18 @@ public class GameManager : MonoBehaviour
 
     public void spawnLegacyCubes()
     {
+        foreach (CubeController obj in stackForLegacy)
+        {
+            int x = obj.PositionInGridX;
+            int y = obj.PositionInGridY;
+            int z = obj.PositionInGridZ;
 
+            GameObject legacyCube;
+            legacyCube = Instantiate(prefabLegacy, obj.transform.position, obj.transform.rotation);
+            legacyCube.transform.parent = obj.transform.parent;
+
+            gridManager.RemoveFromGrid(x,y,z);
+            legacyCube.GetComponent<CubeController>().PlaceCube(new Vector3 (x,y,z));
+        }
     }
 }
