@@ -236,6 +236,7 @@ public class GameplayManager : MonoBehaviour
 
     public void PressDone()
     {
+        GameManager.instance.latestWinner = GameManager.instance.GetCurrentPlayer();
         GameManager.instance.cubeForLegacy = GameManager.instance.currentBlocksPlaced.Peek();
         GameManager.instance.AddPointToCurrentPlayer(GameManager.instance.currentBlocksPlaced.Count);
         GameManager.instance.GoToNextPlayer(GameManager.instance.currentBlocksPlaced.Count > 0);

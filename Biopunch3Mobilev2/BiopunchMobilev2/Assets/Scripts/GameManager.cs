@@ -36,9 +36,11 @@ public class GameManager : MonoBehaviour
     public Material[] MaterialsPlayersGalaxies;
     public int MAX_PLAYERS = 0;
     public int TIME_POINT_FACTOR = 1;
+    public int pointsToWinner = 50;
     public bool onlyLastCube = true;
     public GameObject prefabLegacy;
     public Animator animationController;
+    public int latestWinner = 0;
 
     [HideInInspector]
     public CubeController[] lastCubes;
@@ -149,6 +151,8 @@ public class GameManager : MonoBehaviour
 
     public void resetGame()
     {
+        currentPlayerIndex = 0;
+        latestWinner = 0;
         spawnLegacyCubes();
         lastCubes = new CubeController[MAX_PLAYERS];
         tempLastCube = null;
@@ -198,7 +202,6 @@ public class GameManager : MonoBehaviour
 
         if(compteurSkip >= MAX_PLAYERS - 1)
         {
-            animationController.SetTrigger("EndGame");
             EndPlay();
         }
         else if (compteurSkip > 0)
@@ -259,6 +262,9 @@ public class GameManager : MonoBehaviour
 
     public void EndPlay()
     {
+        animationController.SetTrigger("EndGame");
+
+        playerScores[latestWinner] += pointsToWinner;
         uiController.ShowGameOver();
 
         DisableGameplay();

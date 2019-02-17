@@ -67,7 +67,7 @@ public class GridManager : MonoBehaviour
                     {
                         if (Grid[i, j, k].tag != "LegacyCube")
                         {
-                            Grid[i, j, k].SetGlow(noGlowValue);
+                            Grid[i, j, k].SetGlow(GlowValue);
                         }
                     }
                 }

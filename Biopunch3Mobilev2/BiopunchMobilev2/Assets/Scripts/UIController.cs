@@ -13,6 +13,7 @@ public class UIController : MonoBehaviour
     public Text Score2Text;
     public Text Score3Text;
     public Text Score4Text;
+    public Button buttonReady;
 
 
     // Start is called before the first frame update
@@ -26,6 +27,29 @@ public class UIController : MonoBehaviour
         CanvasInGame.enabled = false;
         CanvasIntermission.enabled = true;
         CanvasGameOver.enabled = false;
+
+        GameManager.PlayerColor color = GameManager.instance.GetPlayerColor(GameManager.instance.GetCurrentPlayer());
+        Color playerColorYOOO = new Color(1f, 0f, 0.3f, 1);
+
+        if (color == GameManager.PlayerColor.eColorOne)
+        {
+            playerColorYOOO = new Color(1f, 0f, 0.3f, 1);
+        }
+        else if (color == GameManager.PlayerColor.eColorTwo)
+        {
+            playerColorYOOO = new Color(0.16f, 0.67f, 1f, 1);
+        }
+        else if (color == GameManager.PlayerColor.eColorThree)
+        {
+            playerColorYOOO = new Color(0f, 0.89f, 0.21f, 1);
+        }
+        else if (color == GameManager.PlayerColor.eColorFour)
+        {
+            playerColorYOOO = new Color(1f, 0.93f, 0.15f, 1);
+        }
+
+        buttonReady.GetComponent<Image>().color = playerColorYOOO;
+        TimerText.color = playerColorYOOO;
         GameManager.instance.StopPlay();
     }
 
@@ -80,11 +104,13 @@ public class UIController : MonoBehaviour
     {
         public int score;
         public GameManager.PlayerColor playerName;
+        public Color playerColor;
 
-        public Score(int score, GameManager.PlayerColor playerName)
+        public Score(int score, GameManager.PlayerColor playerName, Color myColor)
         {
             this.score = score;
             this.playerName = playerName;
+            this.playerColor = myColor;
         }
 
         public int CompareTo(object obj)
@@ -123,53 +149,81 @@ public class UIController : MonoBehaviour
 
             List<Score> highscores = new List<Score>();
 
+            GameManager.PlayerColor color;
+
             for (int i = 0; i < maxPlayers; ++i)
             {
                 //scores[GameManager.instance.GetPlayerScore(i)] = GameManager.instance.GetPlayerColor(i).ToString();
-                highscores.Add(new Score(GameManager.instance.GetPlayerScore(i), GameManager.instance.GetPlayerColor(i)));
+                color = GameManager.instance.GetPlayerColor(i);
+                Color playerColorYOOO = new Color(1f, 0f, 0.3f, 1);
+
+                if (color == GameManager.PlayerColor.eColorOne)
+                {
+                    playerColorYOOO = new Color(1f, 0f, 0.3f, 1);
+                }
+                else if (color == GameManager.PlayerColor.eColorTwo)
+                {
+                    playerColorYOOO = new Color(0.16f, 0.67f, 1f, 1);
+                }
+                else if (color == GameManager.PlayerColor.eColorThree)
+                {
+                    playerColorYOOO = new Color(0f, 0.89f, 0.21f, 1);
+                }
+                else if (color == GameManager.PlayerColor.eColorFour)
+                {
+                    playerColorYOOO = new Color(1f, 0.93f, 0.15f, 1);
+                }
+
+                highscores.Add(new Score(GameManager.instance.GetPlayerScore(i), GameManager.instance.GetPlayerColor(i), playerColorYOOO));
                 //highscores.Add(new Score(0, ""));
 
             }
             highscores.Sort();
             highscores.Reverse();
             Score1Text.text = GameManager.instance.GetColorString(highscores[0].playerName) + ": " + highscores[0].score.ToString();
+            Score1Text.color = highscores[0].playerColor;
             Score2Text.text = GameManager.instance.GetColorString(highscores[1].playerName) + ": " + highscores[1].score.ToString();
+            Score2Text.color = highscores[1].playerColor;
             Score3Text.text = GameManager.instance.GetColorString(highscores[2].playerName) + ": " + highscores[2].score.ToString();
+            Score3Text.color = highscores[2].playerColor;
             Score4Text.text = GameManager.instance.GetColorString(highscores[3].playerName) + ": " + highscores[3].score.ToString();
+            Score4Text.color = highscores[3].playerColor;
 
         }
 
         if (CanvasInGame.enabled)
             TimerText.text = Mathf.CeilToInt(GameManager.instance.GetCurrentPlayerTimer()).ToString();
 
-        GameManager.PlayerColor color = GameManager.instance.GetPlayerColor(GameManager.instance.GetCurrentPlayer());
-        //CanvasRenderer rend = playerColorIndicator.GetComponent<CanvasRenderer>();
-        CanvasRenderer rend = CanvasInGame.GetComponent<CanvasRenderer>();
-        // BUGFIX for intermission canvas null
-        if(null == rend)
-        {
+        //GameManager.PlayerColor color = GameManager.instance.GetPlayerColor(GameManager.instance.GetCurrentPlayer());
+        ////CanvasRenderer rend = playerColorIndicator.GetComponent<CanvasRenderer>();
+        //CanvasRenderer rend = CanvasInGame.GetComponent<CanvasRenderer>();
+        //// BUGFIX for intermission canvas null
+        //if(null == rend)
+        //{
 
-            rend = CanvasIntermission.GetComponentInChildren<CanvasRenderer>();
-        }
+        //    rend = CanvasIntermission.GetComponentInChildren<CanvasRenderer>();
+        //}
 
-        if (null != rend)
-        {
-            if (color == GameManager.PlayerColor.eColorOne)
-            {
-                rend.GetMaterial().color = new Color(1f, 0f, 0.3f, 1);
-            }
-            else if (color == GameManager.PlayerColor.eColorTwo)
-            {
-                rend.GetMaterial().color = new Color(0.16f, 0.67f, 1f, 1);
-            }
-            else if (color == GameManager.PlayerColor.eColorThree)
-            {
-                rend.GetMaterial().color = new Color(0f, 0.89f, 0.21f, 1);
-            }
-            else if (color == GameManager.PlayerColor.eColorFour)
-            {
-                rend.GetMaterial().color = new Color(1f, 0.93f, 0.15f, 1);
-            }
-        }
+        //return;
+
+        //if (null != rend)
+        //{
+        //    if (color == GameManager.PlayerColor.eColorOne)
+        //    {
+        //        rend.GetMaterial().color = new Color(1f, 0f, 0.3f, 1);
+        //    }
+        //    else if (color == GameManager.PlayerColor.eColorTwo)
+        //    {
+        //        rend.GetMaterial().color = new Color(0.16f, 0.67f, 1f, 1);
+        //    }
+        //    else if (color == GameManager.PlayerColor.eColorThree)
+        //    {
+        //        rend.GetMaterial().color = new Color(0f, 0.89f, 0.21f, 1);
+        //    }
+        //    else if (color == GameManager.PlayerColor.eColorFour)
+        //    {
+        //        rend.GetMaterial().color = new Color(1f, 0.93f, 0.15f, 1);
+        //    }
+        //}
     }
 }
