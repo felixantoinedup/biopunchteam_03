@@ -13,6 +13,22 @@ public class GameManager : MonoBehaviour
         LAST_COLOR
     }
 
+    public string GetColorString(PlayerColor pc)
+    {
+        switch (pc)
+        {
+            case PlayerColor.eColorOne:
+                return "Red";
+            case PlayerColor.eColorTwo:
+                return "Blue";
+            case PlayerColor.eColorThree:
+                return "Green";
+            case PlayerColor.eColorFour:
+                return "Yellow"; 
+        }
+        return "None";
+    }
+
     public static GameManager instance = null;              //Static instance of GameManager which allows it to be accessed by any other script.
     public GameObject[] players;
     public CubeController[] startingCubes;
