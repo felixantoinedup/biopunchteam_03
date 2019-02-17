@@ -49,6 +49,12 @@ public class GridManager : MonoBehaviour
         Grid[x,y,z] = cube;
     }
 
+    public void RemoveFromGrid(int x, int y, int z)
+    {
+        Destroy(Grid[x, y, z].gameObject);
+        Grid[x, y, z] = null;
+    }
+
     public void GlowAllPlayerCube()
     {
         for (int i = 0; i < Dimension; i++)
@@ -77,6 +83,26 @@ public class GridManager : MonoBehaviour
                     if (Grid[i, j, k] != null && GameManager.instance.GetPlayerColor(GameManager.instance.GetCurrentPlayer()) == Grid[i, j, k].cubeColor)
                     {
                         Grid[i, j, k].SetGlow(noGlowValue);
+                    }
+                }
+            }
+        }
+    }
+
+    public void ResetGrid()
+    {
+        for (int i = 0; i < Dimension; i++)
+        {
+            for (int j = 0; j < Dimension; j++)
+            {
+                for (int k = 0; k < Dimension; k++)
+                {
+                    if (Grid[i, j, k] != null)
+                    {
+                        if(Grid[i, j, k].gameObject.tag != "LegacyCube")
+                        {
+                            RemoveFromGrid(i, j, k);
+                        }
                     }
                 }
             }

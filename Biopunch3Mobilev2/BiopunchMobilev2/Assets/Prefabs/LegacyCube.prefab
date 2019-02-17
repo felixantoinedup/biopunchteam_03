@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 8057939235247669582}
   - component: {fileID: 1599419549414428057}
   m_Layer: 0
-  m_Name: LegacyBlock
+  m_Name: LegacyCube
   m_TagString: LegacyCube
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
