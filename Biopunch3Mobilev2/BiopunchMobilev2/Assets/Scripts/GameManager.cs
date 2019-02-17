@@ -49,6 +49,8 @@ public class GameManager : MonoBehaviour
     [HideInInspector]
     public Stack<CubeController> stackForLegacy = new Stack<CubeController>();
     [HideInInspector]
+    public CubeController cubeForLegacy = null;
+    [HideInInspector]
     public bool triggerGameplay = false;
     [HideInInspector]
     public int compteurSkip = 0;
@@ -147,28 +149,27 @@ public class GameManager : MonoBehaviour
 
     public void resetGame()
     {
+        spawnLegacyCubes();
         lastCubes = new CubeController[MAX_PLAYERS];
         tempLastCube = null;
         currentBlocksPlaced.Clear();
         stackForLegacy.Clear();
         triggerGameplay = false;
         compteurSkip = 0;
+        cubeForLegacy = null;
+        gridManager.ResetGrid();
+        uiController.ShowReady();
     }
 
     public void AddPointToCurrentPlayer(int points)
     {
         object t = playerTimers[currentPlayerIndex].GetElapsedTime();
         int weightedPoint = points * Mathf.CeilToInt(TIME_POINT_FACTOR - playerTimers[currentPlayerIndex].GetElapsedTime());
-        Debug.Log(playerTimers[currentPlayerIndex].GetElapsedTime());
         playerScores[currentPlayerIndex] += weightedPoint;
-
-        Debug.Log("AddPointToCurrentPlayer Player Index:" + currentPlayerIndex + "Score:" + GetPlayerScore(currentPlayerIndex));
     }
 
     public void GoToNextPlayer(bool placedBlock)
     {
-        Debug.Log(placedBlock);
-
         if(onlyLastCube)
         {
             if (!placedBlock)
@@ -199,7 +200,6 @@ public class GameManager : MonoBehaviour
         {
             animationController.SetTrigger("EndGame");
             EndPlay();
-            Debug.Log("WTF");
         }
         else if (compteurSkip > 0)
         {
@@ -310,18 +310,34 @@ public class GameManager : MonoBehaviour
 
     public void spawnLegacyCubes()
     {
-        foreach (CubeController obj in stackForLegacy)
-        {
-            int x = obj.PositionInGridX;
-            int y = obj.PositionInGridY;
-            int z = obj.PositionInGridZ;
+        int x = cubeForLegacy.PositionInGridX;
+        int y = cubeForLegacy.PositionInGridY;
+        int z = cubeForLegacy.PositionInGridZ;
 
-            GameObject legacyCube;
-            legacyCube = Instantiate(prefabLegacy, obj.transform.position, obj.transform.rotation);
-            legacyCube.transform.parent = obj.transform.parent;
+        GameObject legacyCube;
+        legacyCube = Instantiate(prefabLegacy, cubeForLegacy.transform.position, cubeForLegacy.transform.rotation);
+        legacyCube.transform.parent = cubeForLegacy.transform.parent;
 
-            gridManager.RemoveFromGrid(x,y,z);
-            legacyCube.GetComponent<CubeController>().PlaceCube(new Vector3 (x,y,z));
-        }
+        gridManager.RemoveFromGrid(x, y, z);
+        legacyCube.GetComponent<CubeController>().PlaceCube(new Vector3(x, y, z));
+
+        //foreach (CubeController obj in stackForLegacy)
+        //{
+        //    int x = obj.PositionInGridX;
+        //    int y = obj.PositionInGridY;
+        //    int z = obj.PositionInGridZ;
+
+        //    GameObject legacyCube;
+        //    legacyCube = Instantiate(prefabLegacy, obj.transform.position, obj.transform.rotation);
+        //    legacyCube.transform.parent = obj.transform.parent;
+
+        //    gridManager.RemoveFromGrid(x,y,z);
+        //    legacyCube.GetComponent<CubeController>().PlaceCube(new Vector3 (x,y,z));
+        //}
+    }
+
+    public void copyStack()
+    {
+
     }
 }
