@@ -65,7 +65,10 @@ public class GridManager : MonoBehaviour
                 {
                     if(Grid[i,j,k] != null && GameManager.instance.GetPlayerColor(GameManager.instance.GetCurrentPlayer()) == Grid[i,j,k].cubeColor)
                     {
-                        Grid[i, j, k].SetGlow(GlowValue);
+                        if (Grid[i, j, k].tag != "LegacyCube")
+                        {
+                            Grid[i, j, k].SetGlow(noGlowValue);
+                        }
                     }
                 }
             }
@@ -82,7 +85,10 @@ public class GridManager : MonoBehaviour
                 {
                     if (Grid[i, j, k] != null && GameManager.instance.GetPlayerColor(GameManager.instance.GetCurrentPlayer()) == Grid[i, j, k].cubeColor)
                     {
-                        Grid[i, j, k].SetGlow(noGlowValue);
+                        if (Grid[i, j, k].tag != "LegacyCube")
+                        {
+                            Grid[i, j, k].SetGlow(noGlowValue);
+                        }
                     }
                 }
             }
