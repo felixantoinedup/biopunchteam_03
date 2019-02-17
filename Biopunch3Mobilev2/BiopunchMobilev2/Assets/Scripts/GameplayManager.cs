@@ -236,8 +236,8 @@ public class GameplayManager : MonoBehaviour
 
     public void PressDone()
     {
-        GameManager.instance.GoToNextPlayer(GameManager.instance.currentBlocksPlaced.Count > 0);
         GameManager.instance.AddPointToCurrentPlayer(GameManager.instance.currentBlocksPlaced.Count);
+        GameManager.instance.GoToNextPlayer(GameManager.instance.currentBlocksPlaced.Count > 0);
         GameManager.instance.currentBlocksPlaced.Clear();
         CallReadyPrompt();
     }

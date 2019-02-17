@@ -38,6 +38,7 @@ public class GameManager : MonoBehaviour
     public int TIME_POINT_FACTOR = 1;
     public bool onlyLastCube = true;
     public GameObject prefabLegacy;
+    public Animator animationController;
 
     [HideInInspector]
     public CubeController[] lastCubes;
@@ -60,6 +61,7 @@ public class GameManager : MonoBehaviour
 
     public GameplayManager gameplayManager;
     public GridManager gridManager;
+    public UIController uiController;
 
 
     //Awake is always called before any Start functions
@@ -143,10 +145,21 @@ public class GameManager : MonoBehaviour
         StopPlay();
     }
 
+    public void resetGame()
+    {
+        lastCubes = new CubeController[MAX_PLAYERS];
+        tempLastCube = null;
+        currentBlocksPlaced.Clear();
+        stackForLegacy.Clear();
+        triggerGameplay = false;
+        compteurSkip = 0;
+    }
+
     public void AddPointToCurrentPlayer(int points)
     {
         object t = playerTimers[currentPlayerIndex].GetElapsedTime();
-        int weightedPoint = points + (int) Mathf.Abs((TIME_POINT_FACTOR / playerTimers[currentPlayerIndex].GetElapsedTime()));
+        int weightedPoint = points * Mathf.CeilToInt(TIME_POINT_FACTOR - playerTimers[currentPlayerIndex].GetElapsedTime());
+        Debug.Log(playerTimers[currentPlayerIndex].GetElapsedTime());
         playerScores[currentPlayerIndex] += weightedPoint;
 
         Debug.Log("AddPointToCurrentPlayer Player Index:" + currentPlayerIndex + "Score:" + GetPlayerScore(currentPlayerIndex));
@@ -171,13 +184,27 @@ public class GameManager : MonoBehaviour
         }
 
         if (placedBlock)
+        {
             compteurSkip = 0;
+            animationController.SetInteger("YayIntRandom", Random.Range(0, 3));
+            animationController.SetTrigger("Yay");
+        }
         else
+        {
             ++compteurSkip;
+        }
+            
 
         if(compteurSkip >= MAX_PLAYERS - 1)
         {
+            animationController.SetTrigger("EndGame");
             EndPlay();
+            Debug.Log("WTF");
+        }
+        else if (compteurSkip > 0)
+        {
+            animationController.SetInteger("NayIntRandom", Random.Range(0, 2));
+            animationController.SetTrigger("Nay");
         }
        
 
@@ -232,7 +259,7 @@ public class GameManager : MonoBehaviour
 
     public void EndPlay()
     {
-        Debug.Log("GAME OVER");
+        uiController.ShowGameOver();
 
         DisableGameplay();
 
@@ -247,13 +274,18 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (!triggerGameplay)
+            return;
+
         float t = playerTimers[currentPlayerIndex].GetElapsedTime();
         //Debug.Log("Player:" + currentPlayerIndex + " Timer:" + t);
         if (t > TIME_POINT_FACTOR)
         {
             gameplayManager.UndoAllBlocks();
             GoToNextPlayer(false);
-            gameplayManager.CallReadyPrompt();
+
+            if(compteurSkip < MAX_PLAYERS - 1)
+                gameplayManager.CallReadyPrompt();
         }
 
         //AddPointToCurrentPlayer(1);
