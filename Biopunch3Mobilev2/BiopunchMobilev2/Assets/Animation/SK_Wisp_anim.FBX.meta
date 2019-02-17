@@ -1,0 +1,501 @@
+fileFormatVersion: 2
+guid: e514742b764da3849ae5c01de547d7ca
+ModelImporter:
+  serializedVersion: 23
+  fileIDToRecycleName:
+    100000: Head
+    100002: //RootNode
+    100004: SM_Wisp
+    100006: Wisp_Chest
+    100008: Wisp_eyes_lf
+    100010: Wisp_eyes_rt
+    100012: Wisp_Head
+    100014: Wisp_LArm1
+    100016: Wisp_LArm2
+    100018: Wisp_LArmCollarbone
+    100020: Wisp_LLeg1
+    100022: Wisp_LLeg2
+    100024: Wisp_Pelvis
+    100026: Wisp_RArm1
+    100028: Wisp_RArm2
+    100030: Wisp_RArmCollarbone
+    100032: Wisp_RLeg1
+    100034: Wisp_RLeg2
+    100036: Wisp_Spine1
+    100038: Wisp_Spine2
+    400000: Head
+    400002: //RootNode
+    400004: SM_Wisp
+    400006: Wisp_Chest
+    400008: Wisp_eyes_lf
+    400010: Wisp_eyes_rt
+    400012: Wisp_Head
+    400014: Wisp_LArm1
+    400016: Wisp_LArm2
+    400018: Wisp_LArmCollarbone
+    400020: Wisp_LLeg1
+    400022: Wisp_LLeg2
+    400024: Wisp_Pelvis
+    400026: Wisp_RArm1
+    400028: Wisp_RArm2
+    400030: Wisp_RArmCollarbone
+    400032: Wisp_RLeg1
+    400034: Wisp_RLeg2
+    400036: Wisp_Spine1
+    400038: Wisp_Spine2
+    2100000: 'Material #26'
+    4300000: SM_Wisp
+    4300002: Head
+    7400000: Idle1
+    7400002: Idle2
+    7400004: Yay1
+    7400006: Yay2_Split
+    7400008: Yay3
+    7400010: Nay1
+    7400012: Take 001 (6)
+    7400014: Nay2
+    7400016: EndofRound
+    7400018: EndofGame
+    9500000: //RootNode
+    11100000: //RootNode
+    13700000: Head
+    13700002: SM_Wisp
+    2186277476908879412: ImportLogs
+  externalObjects: {}
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    importConstraints: 0
+    animationCompression: 3
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations:
+    - serializedVersion: 16
+      name: Idle1
+      takeName: Take 001
+      firstFrame: 0
+      lastFrame: 120
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 1
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Idle2
+      takeName: Take 001
+      firstFrame: 130
+      lastFrame: 250
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Yay1
+      takeName: Take 001
+      firstFrame: 400
+      lastFrame: 430
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Yay2_Split
+      takeName: Take 001
+      firstFrame: 480
+      lastFrame: 526
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Yay3
+      takeName: Take 001
+      firstFrame: 530
+      lastFrame: 560
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 1
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Nay1
+      takeName: Take 001
+      firstFrame: 440
+      lastFrame: 470
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 1
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Nay2
+      takeName: Take 001
+      firstFrame: 750
+      lastFrame: 780
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 1
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: EndofRound
+      takeName: Take 001
+      firstFrame: 570
+      lastFrame: 730
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: EndofGame
+      takeName: Take 001
+      firstFrame: 790
+      lastFrame: 852
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    useSRGBMaterialColor: 1
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    preserveHierarchy: 0
+    indexFormat: 0
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+    previousCalculatedGlobalScale: 0.01
+    hasPreviousCalculatedGlobalScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+    legacyComputeAllNormalsFromSmoothingGroupsWhenMeshHasBlendShapes: 0
+    blendShapeNormalImportMode: 1
+    normalSmoothingSource: 0
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton:
+    - name: SK_Wisp_anim(Clone)
+      parentName: 
+      position: {x: 0, y: 0, z: 0}
+      rotation: {x: 0, y: 0, z: 0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: SM_Wisp
+      parentName: SK_Wisp_anim(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: -0.7071068, y: 0, z: -0, w: 0.7071068}
+      scale: {x: 0.78684396, y: 0.78684396, z: 0.78684396}
+    - name: Head
+      parentName: SK_Wisp_anim(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: -0.7071068, y: 0, z: -0, w: 0.7071068}
+      scale: {x: 0.78684396, y: 0.78684396, z: 0.78684396}
+    - name: Wisp_Pelvis
+      parentName: SK_Wisp_anim(Clone)
+      position: {x: 0.001830579, y: 0.14204277, z: -0.031456}
+      rotation: {x: -0.54167485, y: 0.45451918, z: 0.5416755, w: -0.45451984}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Wisp_Spine1
+      parentName: Wisp_Pelvis
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0.0000000064366823, y: -0.0000000034696042, z: -0.01924807, w: 0.99981475}
+      scale: {x: 1.0000001, y: 1.0000002, z: 1.0000001}
+    - name: Wisp_Spine2
+      parentName: Wisp_Spine1
+      position: {x: -0.10047381, y: -0.0000000047683715, z: 1.4901161e-10}
+      rotation: {x: 0.000000008685748, y: -0.000000015670496, z: 0.059941318, w: 0.9982019}
+      scale: {x: 1, y: 1, z: 1.0000001}
+    - name: Wisp_Chest
+      parentName: Wisp_Spine2
+      position: {x: -0.100473784, y: 0, z: 0}
+      rotation: {x: 0.0000000012552229, y: 0.0000000019106392, z: 0.04652165, w: 0.9989173}
+      scale: {x: 0.9999998, y: 0.9999998, z: 0.9999999}
+    - name: Wisp_LArmCollarbone
+      parentName: Wisp_Chest
+      position: {x: -0, y: 0, z: 0.011502182}
+      rotation: {x: 0.0000000026342033, y: 0.7071068, z: -0.0000000026342033, w: 0.7071068}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Wisp_LArm1
+      parentName: Wisp_LArmCollarbone
+      position: {x: -0.013008068, y: 0, z: 0}
+      rotation: {x: -0.120897695, y: 0.37372297, z: -0.049201544, w: 0.91831046}
+      scale: {x: 0.9999999, y: 1, z: 1.0000001}
+    - name: Wisp_LArm2
+      parentName: Wisp_LArm1
+      position: {x: -0.13059807, y: -0.000000009536743, z: 0}
+      rotation: {x: -0.0000000104068425, y: -0.11340463, z: -0.00000009117535, w: 0.9935489}
+      scale: {x: 0.9999999, y: 1.0000001, z: 1.0000001}
+    - name: Wisp_RArmCollarbone
+      parentName: Wisp_Chest
+      position: {x: -0, y: -7.4505804e-11, z: -0.011502183}
+      rotation: {x: -0.0000000026342084, y: -0.7071068, z: -0.0000000026342084, w: 0.7071068}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Wisp_RArm1
+      parentName: Wisp_RArmCollarbone
+      position: {x: -0.013008069, y: 0, z: 0}
+      rotation: {x: 0.20390046, y: -0.32747376, z: -0.07259928, w: 0.9197363}
+      scale: {x: 0.9999998, y: 1, z: 1.0000001}
+    - name: Wisp_RArm2
+      parentName: Wisp_RArm1
+      position: {x: -0.13059807, y: 0, z: 0}
+      rotation: {x: 0.000000054683998, y: 0.1277006, z: -0.00000007464957, w: 0.99181277}
+      scale: {x: 1, y: 0.9999999, z: 1}
+    - name: Wisp_Head
+      parentName: Wisp_Chest
+      position: {x: -0.011530762, y: 2.2351741e-10, z: -1.4901161e-10}
+      rotation: {x: 0.0000000024409172, y: 0.00000005341154, z: 0.038838144, w: 0.9992455}
+      scale: {x: 1, y: 1, z: 0.99999994}
+    - name: Wisp_eyes_lf
+      parentName: Wisp_Head
+      position: {x: -0.064956054, y: 0.14642973, z: -0.06509571}
+      rotation: {x: -0.14870548, y: 0.0000000115172805, z: 0.0000000017319394, w: 0.9888815}
+      scale: {x: 12.67931, y: 0.99999994, z: 6.4049454}
+    - name: Wisp_eyes_rt
+      parentName: Wisp_Head
+      position: {x: -0.06495613, y: 0.14642954, z: 0.06960909}
+      rotation: {x: 0.13827069, y: 0.000000011534901, z: -0.0000000016104076, w: 0.9903945}
+      scale: {x: 12.67931, y: 0.99999994, z: 6.404945}
+    - name: Wisp_RLeg1
+      parentName: Wisp_Pelvis
+      position: {x: 0.000000009536743, y: 0, z: -0.054228716}
+      rotation: {x: 0.060371615, y: 0.99580854, z: 0.0063760136, w: 0.06841102}
+      scale: {x: 1, y: 1.0000004, z: 1.0000001}
+    - name: Wisp_RLeg2
+      parentName: Wisp_RLeg1
+      position: {x: -0.0729649, y: 0.000000009536743, z: 0.0000000047683715}
+      rotation: {x: 0.009803086, y: -0.0015470351, z: 0.08286451, w: 0.99651146}
+      scale: {x: 1.0000002, y: 0.9999997, z: 0.9999993}
+    - name: Wisp_LLeg1
+      parentName: Wisp_Pelvis
+      position: {x: -0.000000009536743, y: 0, z: 0.054228734}
+      rotation: {x: 0.06044343, y: 0.9969365, z: -0.0046645654, w: -0.049421374}
+      scale: {x: 0.99999976, y: 1.0000002, z: 1.0000004}
+    - name: Wisp_LLeg2
+      parentName: Wisp_LLeg1
+      position: {x: -0.072964884, y: 0, z: 0.0000000023841857}
+      rotation: {x: -0.0070873154, y: 0.0011050779, z: 0.083192, w: 0.9965077}
+      scale: {x: 1.0000005, y: 1, z: 0.99999964}
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+    hasExtraRoot: 1
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
