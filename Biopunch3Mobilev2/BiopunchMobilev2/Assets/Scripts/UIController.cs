@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -51,6 +51,14 @@ public class UIController : MonoBehaviour
         CanvasInGame.enabled = true;
         CanvasIntermission.enabled = false;
         CanvasGameOver.enabled = false;
+    }
+
+    public void PressEndGame()
+    {
+        CanvasInGame.enabled = false;
+        CanvasIntermission.enabled = false;
+        CanvasGameOver.enabled = true;
+        GameManager.instance.EndPlay();
     }
 
     int ElementAt(System.Collections.Generic.SortedDictionary<int, string> dict, int i) // Dunno what is your dictionary types...
@@ -123,6 +131,7 @@ public class UIController : MonoBehaviour
 
             }
             highscores.Sort();
+            highscores.Reverse();
             Score1Text.text = GameManager.instance.GetColorString(highscores[0].playerName) + ": " + highscores[0].score.ToString();
             Score2Text.text = GameManager.instance.GetColorString(highscores[1].playerName) + ": " + highscores[1].score.ToString();
             Score3Text.text = GameManager.instance.GetColorString(highscores[2].playerName) + ": " + highscores[2].score.ToString();
