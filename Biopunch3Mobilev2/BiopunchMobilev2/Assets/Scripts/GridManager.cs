@@ -6,6 +6,8 @@ public class GridManager : MonoBehaviour
 {
     public float SizeCube = 1;
     public int Dimension = 16;
+    public float noGlowValue = 0.6f;
+    public float GlowValue = 2f;
 
     CubeController[,,] Grid;
 
@@ -45,5 +47,65 @@ public class GridManager : MonoBehaviour
     public void AddToGrid(CubeController cube, int x, int y, int z)
     {
         Grid[x,y,z] = cube;
+    }
+
+    public void RemoveFromGrid(int x, int y, int z)
+    {
+        Destroy(Grid[x, y, z].gameObject);
+        Grid[x, y, z] = null;
+    }
+
+    public void GlowAllPlayerCube()
+    {
+        for (int i = 0; i < Dimension; i++)
+        {
+            for (int j = 0; j < Dimension; j++)
+            {
+                for (int k = 0; k < Dimension; k++)
+                {
+                    if(Grid[i,j,k] != null && GameManager.instance.GetPlayerColor(GameManager.instance.GetCurrentPlayer()) == Grid[i,j,k].cubeColor)
+                    {
+                        Grid[i, j, k].SetGlow(GlowValue);
+                    }
+                }
+            }
+        }
+    }
+
+    public void StopGlowAllPlayerCube()
+    {
+        for (int i = 0; i < Dimension; i++)
+        {
+            for (int j = 0; j < Dimension; j++)
+            {
+                for (int k = 0; k < Dimension; k++)
+                {
+                    if (Grid[i, j, k] != null && GameManager.instance.GetPlayerColor(GameManager.instance.GetCurrentPlayer()) == Grid[i, j, k].cubeColor)
+                    {
+                        Grid[i, j, k].SetGlow(noGlowValue);
+                    }
+                }
+            }
+        }
+    }
+
+    public void ResetGrid()
+    {
+        for (int i = 0; i < Dimension; i++)
+        {
+            for (int j = 0; j < Dimension; j++)
+            {
+                for (int k = 0; k < Dimension; k++)
+                {
+                    if (Grid[i, j, k] != null)
+                    {
+                        if(Grid[i, j, k].gameObject.tag != "LegacyCube")
+                        {
+                            RemoveFromGrid(i, j, k);
+                        }
+                    }
+                }
+            }
+        }
     }
 }

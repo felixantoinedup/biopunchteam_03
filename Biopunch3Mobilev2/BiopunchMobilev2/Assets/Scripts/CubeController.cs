@@ -22,7 +22,7 @@ public class CubeController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //Debug.Log(transform.position);
+
     }
 
     public GameObject PlaceNextCube(RaycastHit hit, GameManager.PlayerColor color)
@@ -38,19 +38,34 @@ public class CubeController : MonoBehaviour
         else if (Mathf.RoundToInt(positionInGrid.z) < 0 || Mathf.RoundToInt(positionInGrid.z) >= GridManager.instance.Dimension)
             canPlace = false;
 
+        bool isCurrentCube = false;
+
+        foreach (CubeController obj in GameManager.instance.currentBlocksPlaced)
+        {
+            if (obj == this)
+                isCurrentCube = true;
+        }
+
         if (GameManager.instance.onlyLastCube && this != GameManager.instance.lastCubes[GameManager.instance.GetCurrentPlayer()])
             canPlace = false;
-        else if (GameManager.instance.lastCubes[GameManager.instance.GetCurrentPlayer()] != null && this != GameManager.instance.lastCubes[GameManager.instance.GetCurrentPlayer()])
+        else if (GameManager.instance.lastCubes[GameManager.instance.GetCurrentPlayer()] != null && isCurrentCube == false)
             canPlace = false;
 
         if (canPlace == false)
             return null;
+
+        if (GameManager.instance.lastCubes[GameManager.instance.GetCurrentPlayer()] == null)
+        {
+            GameManager.instance.StopGlow();
+        }
 
         GameObject nextCube;
         nextCube = Instantiate(CubePrefab, transform.position + hit.normal * GridManager.instance.SizeCube, transform.rotation);
         nextCube.transform.parent = transform.parent;
         nextCube.GetComponent<CubeController>().SetCubeColor(color);
         nextCube.GetComponent<CubeController>().PlaceCube(positionInGrid);
+
+        nextCube.GetComponent<CubeController>().SetGlow(GameManager.instance.gridManager.GlowValue);
 
         return nextCube;
     }
@@ -104,5 +119,13 @@ public class CubeController : MonoBehaviour
             mats[5] = GameManager.instance.MaterialsPlayers[3];
             GetComponent<Renderer>().materials = mats;
         }
+    }
+
+    public void SetGlow(float glowValue)
+    {
+        Material[] mats;
+        mats = GetComponent<Renderer>().materials;
+
+        mats[5].SetFloat("Vector1_4C82A84B", glowValue);
     }
 }

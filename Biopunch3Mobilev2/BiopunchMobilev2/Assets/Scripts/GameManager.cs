@@ -21,11 +21,20 @@ public class GameManager : MonoBehaviour
     public int MAX_PLAYERS = 0;
     public int TIME_POINT_FACTOR = 1;
     public bool onlyLastCube = true;
+    public GameObject prefabLegacy;
 
     [HideInInspector]
     public CubeController[] lastCubes;
     [HideInInspector]
     public CubeController tempLastCube = null;
+    [HideInInspector]
+    public Stack<CubeController> currentBlocksPlaced = new Stack<CubeController>();
+    [HideInInspector]
+    public Stack<CubeController> stackForLegacy = new Stack<CubeController>();
+    [HideInInspector]
+    public bool triggerGameplay = false;
+    [HideInInspector]
+    public int compteurSkip = 0;
 
     private int[] playerScores;
     private int currentPlayerIndex = 0;
@@ -34,6 +43,8 @@ public class GameManager : MonoBehaviour
     private PlayerColor[] playersColor;
 
     public GameplayManager gameplayManager;
+    public GridManager gridManager;
+
 
     //Awake is always called before any Start functions
     void Awake()
@@ -112,6 +123,8 @@ public class GameManager : MonoBehaviour
         //}
 
         //tempLastCube = lastCubes[0];
+
+        StopPlay();
     }
 
     public void AddPointToCurrentPlayer(int points)
@@ -125,6 +138,8 @@ public class GameManager : MonoBehaviour
 
     public void GoToNextPlayer(bool placedBlock)
     {
+        Debug.Log(placedBlock);
+
         if(onlyLastCube)
         {
             if (!placedBlock)
@@ -139,8 +154,23 @@ public class GameManager : MonoBehaviour
             lastCubes[currentPlayerIndex] = null;
         }
 
+        if (placedBlock)
+            compteurSkip = 0;
+        else
+            ++compteurSkip;
+
+        if(compteurSkip >= MAX_PLAYERS - 1)
+        {
+            EndPlay();
+        }
+       
+
+        gridManager.StopGlowAllPlayerCube();
+
         currentPlayerIndex = (currentPlayerIndex+1) % MAX_PLAYERS;
         playerTimers[currentPlayerIndex].Reset();
+
+        gridManager.GlowAllPlayerCube();
     }
 
     public int GetPlayerScore(int index)
@@ -163,18 +193,85 @@ public class GameManager : MonoBehaviour
         return (float) TIME_POINT_FACTOR - playerTimers[currentPlayerIndex].GetElapsedTime();
     }
 
+    public void StartPlay()
+    {
+        EnableGameplay();
+
+        foreach (PlayerTimer pt in playerTimers)
+        {
+            pt.Reset();
+            pt.StartTimer();
+        }
+    }
+
+    public void StopPlay()
+    {
+        DisableGameplay();
+
+        foreach (PlayerTimer pt in playerTimers)
+        {
+            pt.StopTimer();
+        }
+    }
+
+    public void EndPlay()
+    {
+        Debug.Log("GAME OVER");
+
+        DisableGameplay();
+
+        foreach (PlayerTimer pt in playerTimers)
+        {
+            pt.StopTimer();
+        }
+    }
+
     // Update is called once per frame
     void Update()
     {
         float t = playerTimers[currentPlayerIndex].GetElapsedTime();
+        //Debug.Log("Player:" + currentPlayerIndex + " Timer:" + t);
         if (t > TIME_POINT_FACTOR)
         {
             gameplayManager.UndoAllBlocks();
             GoToNextPlayer(false);
+            gameplayManager.CallReadyPrompt();
         }
 
         //AddPointToCurrentPlayer(1);
         ////Debug.Log("Player Index:" +currentPlayerIndex + "Score:" + GetPlayerScore(currentPlayerIndex));
         //GoToNextPlayer();
+    }
+
+    public void StopGlow()
+    {
+        gridManager.StopGlowAllPlayerCube();
+    }
+
+    public void EnableGameplay()
+    {
+        triggerGameplay = true;
+    }
+
+    public void DisableGameplay()
+    {
+        triggerGameplay = false;
+    }
+
+    public void spawnLegacyCubes()
+    {
+        foreach (CubeController obj in stackForLegacy)
+        {
+            int x = obj.PositionInGridX;
+            int y = obj.PositionInGridY;
+            int z = obj.PositionInGridZ;
+
+            GameObject legacyCube;
+            legacyCube = Instantiate(prefabLegacy, obj.transform.position, obj.transform.rotation);
+            legacyCube.transform.parent = obj.transform.parent;
+
+            gridManager.RemoveFromGrid(x,y,z);
+            legacyCube.GetComponent<CubeController>().PlaceCube(new Vector3 (x,y,z));
+        }
     }
 }
