@@ -107,8 +107,12 @@ public class GameplayManager : MonoBehaviour
             {
                 PressRevert();
             }
+            else if (Input.GetKeyDown("q"))
+            {
+                GameManager.instance.EndPlay();
+            }
 
-            if(!fpsControl)
+            if (!fpsControl)
             {
                 //Arena.transform.parent = null;
                 //ArenaRotator.transform.rotation = Quaternion.identity;
@@ -232,7 +236,7 @@ public class GameplayManager : MonoBehaviour
 
     public void PressDone()
     {
-        GameManager.instance.GoToNextPlayer(true);
+        GameManager.instance.GoToNextPlayer(GameManager.instance.currentBlocksPlaced.Count > 0);
         GameManager.instance.AddPointToCurrentPlayer(GameManager.instance.currentBlocksPlaced.Count);
         GameManager.instance.currentBlocksPlaced.Clear();
         CallReadyPrompt();
@@ -241,6 +245,11 @@ public class GameplayManager : MonoBehaviour
     public void CallReadyPrompt()
     {
         uicontroller.ShowReady();
+    }
+
+    public void CallGameOverPrompt()
+    {
+        uicontroller.ShowGameOver();
     }
 
     public void PressRevert()
