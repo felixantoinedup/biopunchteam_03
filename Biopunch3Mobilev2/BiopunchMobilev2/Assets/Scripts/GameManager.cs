@@ -21,11 +21,20 @@ public class GameManager : MonoBehaviour
     public int MAX_PLAYERS = 0;
     public int TIME_POINT_FACTOR = 1;
     public bool onlyLastCube = true;
+    public GameObject prefabLegacy;
 
     [HideInInspector]
     public CubeController[] lastCubes;
     [HideInInspector]
     public CubeController tempLastCube = null;
+    [HideInInspector]
+    public Stack<CubeController> currentBlocksPlaced = new Stack<CubeController>();
+    [HideInInspector]
+    public Stack<CubeController> stackForLegacy = new Stack<CubeController>();
+    [HideInInspector]
+    public bool triggerGameplay = false;
+    [HideInInspector]
+    public int compteurSkip = 0;
 
     private int[] playerScores;
     private int currentPlayerIndex = 0;
@@ -129,6 +138,8 @@ public class GameManager : MonoBehaviour
 
     public void GoToNextPlayer(bool placedBlock)
     {
+        Debug.Log(placedBlock);
+
         if(onlyLastCube)
         {
             if (!placedBlock)
@@ -142,6 +153,17 @@ public class GameManager : MonoBehaviour
         {
             lastCubes[currentPlayerIndex] = null;
         }
+
+        if (placedBlock)
+            compteurSkip = 0;
+        else
+            ++compteurSkip;
+
+        if(compteurSkip >= MAX_PLAYERS - 1)
+        {
+            EndPlay();
+        }
+       
 
         gridManager.StopGlowAllPlayerCube();
 
@@ -173,6 +195,7 @@ public class GameManager : MonoBehaviour
 
     public void StartPlay()
     {
+        EnableGameplay();
 
         foreach (PlayerTimer pt in playerTimers)
         {
@@ -183,6 +206,8 @@ public class GameManager : MonoBehaviour
 
     public void StopPlay()
     {
+        DisableGameplay();
+
         foreach (PlayerTimer pt in playerTimers)
         {
             pt.StopTimer();
@@ -191,6 +216,10 @@ public class GameManager : MonoBehaviour
 
     public void EndPlay()
     {
+        Debug.Log("GAME OVER");
+
+        DisableGameplay();
+
         foreach (PlayerTimer pt in playerTimers)
         {
             pt.StopTimer();
@@ -217,5 +246,20 @@ public class GameManager : MonoBehaviour
     public void StopGlow()
     {
         gridManager.StopGlowAllPlayerCube();
+    }
+
+    public void EnableGameplay()
+    {
+        triggerGameplay = true;
+    }
+
+    public void DisableGameplay()
+    {
+        triggerGameplay = false;
+    }
+
+    public void spawnLegacyCubes()
+    {
+
     }
 }

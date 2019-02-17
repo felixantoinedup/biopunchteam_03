@@ -38,9 +38,17 @@ public class CubeController : MonoBehaviour
         else if (Mathf.RoundToInt(positionInGrid.z) < 0 || Mathf.RoundToInt(positionInGrid.z) >= GridManager.instance.Dimension)
             canPlace = false;
 
+        bool isCurrentCube = false;
+
+        foreach (CubeController obj in GameManager.instance.currentBlocksPlaced)
+        {
+            if (obj == this)
+                isCurrentCube = true;
+        }
+
         if (GameManager.instance.onlyLastCube && this != GameManager.instance.lastCubes[GameManager.instance.GetCurrentPlayer()])
             canPlace = false;
-        else if (GameManager.instance.lastCubes[GameManager.instance.GetCurrentPlayer()] != null && this != GameManager.instance.lastCubes[GameManager.instance.GetCurrentPlayer()])
+        else if (GameManager.instance.lastCubes[GameManager.instance.GetCurrentPlayer()] != null && isCurrentCube == false)
             canPlace = false;
 
         if (canPlace == false)
@@ -57,7 +65,6 @@ public class CubeController : MonoBehaviour
         nextCube.GetComponent<CubeController>().SetCubeColor(color);
         nextCube.GetComponent<CubeController>().PlaceCube(positionInGrid);
 
-        SetGlow(GameManager.instance.gridManager.noGlowValue);
         nextCube.GetComponent<CubeController>().SetGlow(GameManager.instance.gridManager.GlowValue);
 
         return nextCube;
