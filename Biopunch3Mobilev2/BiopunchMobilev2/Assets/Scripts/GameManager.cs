@@ -35,6 +35,7 @@ public class GameManager : MonoBehaviour
 
     public GameplayManager gameplayManager;
 
+
     //Awake is always called before any Start functions
     void Awake()
         {
@@ -112,6 +113,8 @@ public class GameManager : MonoBehaviour
         //}
 
         //tempLastCube = lastCubes[0];
+
+        StopPlay();
     }
 
     public void AddPointToCurrentPlayer(int points)
@@ -163,18 +166,48 @@ public class GameManager : MonoBehaviour
         return (float) TIME_POINT_FACTOR - playerTimers[currentPlayerIndex].GetElapsedTime();
     }
 
+    public void StartPlay()
+    {
+
+        foreach (PlayerTimer pt in playerTimers)
+        {
+            pt.Reset();
+            pt.StartTimer();
+        }
+    }
+
+    public void StopPlay()
+    {
+        foreach (PlayerTimer pt in playerTimers)
+        {
+            pt.StopTimer();
+        }
+    }
+
+    public void EndPlay()
+    {
+        foreach (PlayerTimer pt in playerTimers)
+        {
+            pt.StopTimer();
+        }
+    }
+
     // Update is called once per frame
     void Update()
     {
         float t = playerTimers[currentPlayerIndex].GetElapsedTime();
+        Debug.Log("Player:" + currentPlayerIndex + " Timer:" + t);
         if (t > TIME_POINT_FACTOR)
         {
             gameplayManager.UndoAllBlocks();
             GoToNextPlayer(false);
+            gameplayManager.CallReadyPrompt();
         }
 
         //AddPointToCurrentPlayer(1);
         ////Debug.Log("Player Index:" +currentPlayerIndex + "Score:" + GetPlayerScore(currentPlayerIndex));
         //GoToNextPlayer();
     }
+
+
 }

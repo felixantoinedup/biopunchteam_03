@@ -17,6 +17,8 @@ public class GameplayManager : MonoBehaviour
 
     private Stack<CubeController> currentBlocksPlaced = new Stack<CubeController>();
 
+    public UIController uicontroller;
+
     public void UndoAllBlocks()
     {
         foreach (CubeController obj in currentBlocksPlaced)
@@ -186,10 +188,18 @@ public class GameplayManager : MonoBehaviour
         GameManager.instance.GoToNextPlayer(true);
         GameManager.instance.AddPointToCurrentPlayer(currentBlocksPlaced.Count);
         currentBlocksPlaced.Clear();
+        CallReadyPrompt();
+    }
+
+    public void CallReadyPrompt()
+    {
+        uicontroller.ShowReady();
     }
 
     public void PressRevert()
     {
         UndoLastBlock();
     }
+
+
 }
