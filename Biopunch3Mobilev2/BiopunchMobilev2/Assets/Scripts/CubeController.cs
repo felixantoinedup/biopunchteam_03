@@ -39,9 +39,9 @@ public class CubeController : MonoBehaviour
             canPlace = false;
 
         if (GameManager.instance.onlyLastCube && this != GameManager.instance.lastCubes[GameManager.instance.GetCurrentPlayer()])
-        {
             canPlace = false;
-        }
+        else if (GameManager.instance.lastCubes[GameManager.instance.GetCurrentPlayer()] != null && this != GameManager.instance.lastCubes[GameManager.instance.GetCurrentPlayer()])
+            canPlace = false;
 
         if (canPlace == false)
             return null;

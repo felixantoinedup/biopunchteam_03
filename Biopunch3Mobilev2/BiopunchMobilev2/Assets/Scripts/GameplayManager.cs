@@ -86,6 +86,10 @@ public class GameplayManager : MonoBehaviour
             {
                 PressRevert();
             }
+
+            //Arena.transform.parent = null;
+            //ArenaRotator.transform.rotation = Quaternion.identity;
+            //Arena.transform.parent = ArenaRotator.transform;
         }
     }
 
@@ -149,7 +153,20 @@ public class GameplayManager : MonoBehaviour
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
         if (Physics.Raycast(ray, out hit, 100.0f))
         {
-            if (GameManager.instance.GetPlayerColor(GameManager.instance.GetCurrentPlayer()) == hit.collider.GetComponent<CubeController>().cubeColor)
+            if(hit.collider.tag == "StartPoint")
+            {
+                if(hit.collider.gameObject.GetComponent<StartPointController>().PlayerID == GameManager.instance.GetCurrentPlayer())
+                {
+                    GameObject cube = null;
+                    cube = hit.collider.GetComponent<StartPointController>().PlaceNextCube(hit, GameManager.instance.GetPlayerColor(GameManager.instance.GetCurrentPlayer()));
+                    if (null != cube)
+                    {
+                        currentBlocksPlaced.Push(cube.GetComponent<CubeController>());
+                        GameManager.instance.lastCubes[GameManager.instance.GetCurrentPlayer()] = cube.GetComponent<CubeController>();
+                    }
+                }
+            }
+            else if (GameManager.instance.GetPlayerColor(GameManager.instance.GetCurrentPlayer()) == hit.collider.GetComponent<CubeController>().cubeColor)
             {
                 GameObject cube = null;
                 cube = hit.collider.GetComponent<CubeController>().PlaceNextCube(hit, GameManager.instance.GetPlayerColor(GameManager.instance.GetCurrentPlayer()));
@@ -158,7 +175,7 @@ public class GameplayManager : MonoBehaviour
                 if(null != cube)
                 {
                     currentBlocksPlaced.Push(cube.GetComponent<CubeController>());
-                    GameManager.instance.lastCubes[GameManager.instance.GetCurrentPlayer()] = currentBlocksPlaced.Peek();
+                    GameManager.instance.lastCubes[GameManager.instance.GetCurrentPlayer()] = cube.GetComponent<CubeController>();
                 }
             }
         }
