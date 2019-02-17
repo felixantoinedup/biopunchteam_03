@@ -22,6 +22,7 @@ public class GameManager : MonoBehaviour
     public int TIME_POINT_FACTOR = 1;
     public bool onlyLastCube = true;
     public GameObject prefabLegacy;
+    public Animator animationController;
 
     [HideInInspector]
     public CubeController[] lastCubes;
@@ -155,13 +156,26 @@ public class GameManager : MonoBehaviour
         }
 
         if (placedBlock)
+        {
             compteurSkip = 0;
+            animationController.SetInteger("YayIntRandom", Random.Range(0, 3));
+            animationController.SetTrigger("Yay");
+        }
         else
+        {
             ++compteurSkip;
+        }
+            
 
         if(compteurSkip >= MAX_PLAYERS - 1)
         {
+            animationController.SetTrigger("EndGame");
             EndPlay();
+        }
+        else if (compteurSkip > 0)
+        {
+            animationController.SetInteger("NayIntRandom", Random.Range(0, 2));
+            animationController.SetTrigger("Nay");
         }
        
 
