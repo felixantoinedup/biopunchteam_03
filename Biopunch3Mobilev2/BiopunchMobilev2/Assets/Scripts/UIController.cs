@@ -68,62 +68,67 @@ public class UIController : MonoBehaviour
     }
 
 
-    //public class Score : System.IComparable
-    //{
-    //    public int score;
-    //    public string playerName;
-
-    //    public Score(int score, string playerName)
-    //    {
-    //        this.score = score;
-    //        this.playerName = playerName;
-    //    }
-
-    //    public int CompareTo(object obj)
-    //    {
-    //        Score otherScore = obj as Score;
-    //        if (otherScore != null)
-    //        {
-    //            return this.score.CompareTo(otherScore.score);
-    //        }
-    //        else
-    //        {
-    //            throw new System.ArgumentException("Object is not a Score");
-    //        }
-    //    }
-    //}
-
-        // Update is called once per frame
-        void Update()
+    public class Score : System.IComparable
     {
-        //if(CanvasGameOver.enabled)
-        //{
-        //    ////GameManager.instance.GetPlayerScore();
-        //    ////GameManager.instance.GetPlayerColor();
-        //    int maxPlayers = GameManager.instance.MAX_PLAYERS;
-        //    //System.Collections.Generic.SortedDictionary<int, string> scores = new System.Collections.Generic.SortedDictionary<int, string>();
+        public int score;
+        public GameManager.PlayerColor playerName;
 
-        //    //for (int i = 0; i < maxPlayers; ++i)
-        //    //{
-        //    //    scores[GameManager.instance.GetPlayerScore(i)] = GameManager.instance.GetPlayerColor(i).ToString();
-        //    //}
+        public Score(int score, GameManager.PlayerColor playerName)
+        {
+            this.score = score;
+            this.playerName = playerName;
+        }
 
-        //    //Score1Text.text = scores[ElementAt(scores, 0)].ToString() + ElementAt(scores, 0);
-        //    //Score2Text.text = scores[ElementAt(scores, 1)].ToString() + ElementAt(scores, 1);
-        //    //Score3Text.text = scores[ElementAt(scores, 2)].ToString() + ElementAt(scores, 2);
-        //    //Score4Text.text = scores[ElementAt(scores, 3)].ToString() + ElementAt(scores, 3);
+        public int CompareTo(object obj)
+        {
+            Score otherScore = obj as Score;
+            if (otherScore != null)
+            {
+                return this.score.CompareTo(otherScore.score);
+            }
+            else
+            {
+                throw new System.ArgumentException("Object is not a Score");
+            }
+        }
+    }
 
-        //    //SortedList<int, string> highscores = new SortedList<int, string>();
+    // Update is called once per frame
+    void Update()
+    {
+        if (CanvasGameOver.enabled)
+        {
+            ////GameManager.instance.GetPlayerScore();
+            ////GameManager.instance.GetPlayerColor();
+            int maxPlayers = GameManager.instance.MAX_PLAYERS;
+            //System.Collections.Generic.SortedDictionary<int, string> scores = new System.Collections.Generic.SortedDictionary<int, string>();
 
-        //    for (int i = 0; i < maxPlayers; ++i)
-        //    {
-        //        //scores[GameManager.instance.GetPlayerScore(i)] = GameManager.instance.GetPlayerColor(i).ToString();
-        //        //highscores.Add(new Score(GameManager.instance.GetPlayerScore(i), GameManager.instance.GetPlayerColor(i).ToString()));
-        //        //highscores.Add(new Score(0, ""));
+            //for (int i = 0; i < maxPlayers; ++i)
+            //{
+            //    scores[GameManager.instance.GetPlayerScore(i)] = GameManager.instance.GetPlayerColor(i).ToString();
+            //}
 
-        //    }
+            //Score1Text.text = scores[ElementAt(scores, 0)].ToString() + ElementAt(scores, 0);
+            //Score2Text.text = scores[ElementAt(scores, 1)].ToString() + ElementAt(scores, 1);
+            //Score3Text.text = scores[ElementAt(scores, 2)].ToString() + ElementAt(scores, 2);
+            //Score4Text.text = scores[ElementAt(scores, 3)].ToString() + ElementAt(scores, 3);
 
-        //}
+            List<Score> highscores = new List<Score>();
+
+            for (int i = 0; i < maxPlayers; ++i)
+            {
+                //scores[GameManager.instance.GetPlayerScore(i)] = GameManager.instance.GetPlayerColor(i).ToString();
+                highscores.Add(new Score(GameManager.instance.GetPlayerScore(i), GameManager.instance.GetPlayerColor(i)));
+                //highscores.Add(new Score(0, ""));
+
+            }
+            highscores.Sort();
+            Score1Text.text = GameManager.instance.GetColorString(highscores[0].playerName) + ": " + highscores[0].score.ToString();
+            Score2Text.text = GameManager.instance.GetColorString(highscores[1].playerName) + ": " + highscores[1].score.ToString();
+            Score3Text.text = GameManager.instance.GetColorString(highscores[2].playerName) + ": " + highscores[2].score.ToString();
+            Score4Text.text = GameManager.instance.GetColorString(highscores[3].playerName) + ": " + highscores[3].score.ToString();
+
+        }
 
         if (CanvasInGame.enabled)
             TimerText.text = Mathf.CeilToInt(GameManager.instance.GetCurrentPlayerTimer()).ToString();
