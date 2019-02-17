@@ -196,7 +196,7 @@ public class GameManager : MonoBehaviour
     void Update()
     {
         float t = playerTimers[currentPlayerIndex].GetElapsedTime();
-        Debug.Log("Player:" + currentPlayerIndex + " Timer:" + t);
+        //Debug.Log("Player:" + currentPlayerIndex + " Timer:" + t);
         if (t > TIME_POINT_FACTOR)
         {
             gameplayManager.UndoAllBlocks();
