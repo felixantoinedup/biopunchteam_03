@@ -224,6 +224,8 @@ public class GameManager : MonoBehaviour
         {
             pt.StopTimer();
         }
+
+        gameplayManager.CallGameOverPrompt();
     }
 
     // Update is called once per frame

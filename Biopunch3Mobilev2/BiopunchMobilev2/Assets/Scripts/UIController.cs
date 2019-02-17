@@ -1,12 +1,19 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using UnityEngine;
 using UnityEngine.UI;
 
 public class UIController : MonoBehaviour
 {
     public Canvas CanvasInGame;
     public Canvas CanvasIntermission;
+    public Canvas CanvasGameOver;
     public Text TimerText;
     public Image playerColorIndicator;
+    public Text Score1Text;
+    public Text Score2Text;
+    public Text Score3Text;
+    public Text Score4Text;
+
 
     // Start is called before the first frame update
     void Start()
@@ -18,6 +25,15 @@ public class UIController : MonoBehaviour
     {
         CanvasInGame.enabled = false;
         CanvasIntermission.enabled = true;
+        CanvasGameOver.enabled = false;
+        GameManager.instance.StopPlay();
+    }
+
+    public void ShowGameOver()
+    {
+        CanvasInGame.enabled = false;
+        CanvasIntermission.enabled = false;
+        CanvasGameOver.enabled = true;
         GameManager.instance.StopPlay();
     }
 
@@ -25,12 +41,90 @@ public class UIController : MonoBehaviour
     {
         GameManager.instance.StartPlay();
         CanvasInGame.enabled = true;
+        CanvasGameOver.enabled = false;
         CanvasIntermission.enabled = false;
     }
 
-    // Update is called once per frame
-    void Update()
+    public void PressReplay()
     {
+        GameManager.instance.StartPlay();
+        CanvasInGame.enabled = true;
+        CanvasIntermission.enabled = false;
+        CanvasGameOver.enabled = false;
+    }
+
+    int ElementAt(System.Collections.Generic.SortedDictionary<int, string> dict, int i) // Dunno what is your dictionary types...
+    {
+        int index = 0;
+        foreach (var kvp in dict)
+        {
+            index++;
+            if (index == i)
+            {
+                return kvp.Key;  // According to question, you are after the key 
+            }
+        }
+        return 0;
+    }
+
+
+    //public class Score : System.IComparable
+    //{
+    //    public int score;
+    //    public string playerName;
+
+    //    public Score(int score, string playerName)
+    //    {
+    //        this.score = score;
+    //        this.playerName = playerName;
+    //    }
+
+    //    public int CompareTo(object obj)
+    //    {
+    //        Score otherScore = obj as Score;
+    //        if (otherScore != null)
+    //        {
+    //            return this.score.CompareTo(otherScore.score);
+    //        }
+    //        else
+    //        {
+    //            throw new System.ArgumentException("Object is not a Score");
+    //        }
+    //    }
+    //}
+
+        // Update is called once per frame
+        void Update()
+    {
+        //if(CanvasGameOver.enabled)
+        //{
+        //    ////GameManager.instance.GetPlayerScore();
+        //    ////GameManager.instance.GetPlayerColor();
+        //    int maxPlayers = GameManager.instance.MAX_PLAYERS;
+        //    //System.Collections.Generic.SortedDictionary<int, string> scores = new System.Collections.Generic.SortedDictionary<int, string>();
+
+        //    //for (int i = 0; i < maxPlayers; ++i)
+        //    //{
+        //    //    scores[GameManager.instance.GetPlayerScore(i)] = GameManager.instance.GetPlayerColor(i).ToString();
+        //    //}
+
+        //    //Score1Text.text = scores[ElementAt(scores, 0)].ToString() + ElementAt(scores, 0);
+        //    //Score2Text.text = scores[ElementAt(scores, 1)].ToString() + ElementAt(scores, 1);
+        //    //Score3Text.text = scores[ElementAt(scores, 2)].ToString() + ElementAt(scores, 2);
+        //    //Score4Text.text = scores[ElementAt(scores, 3)].ToString() + ElementAt(scores, 3);
+
+        //    //SortedList<int, string> highscores = new SortedList<int, string>();
+
+        //    for (int i = 0; i < maxPlayers; ++i)
+        //    {
+        //        //scores[GameManager.instance.GetPlayerScore(i)] = GameManager.instance.GetPlayerColor(i).ToString();
+        //        //highscores.Add(new Score(GameManager.instance.GetPlayerScore(i), GameManager.instance.GetPlayerColor(i).ToString()));
+        //        //highscores.Add(new Score(0, ""));
+
+        //    }
+
+        //}
+
         if (CanvasInGame.enabled)
             TimerText.text = Mathf.CeilToInt(GameManager.instance.GetCurrentPlayerTimer()).ToString();
 
